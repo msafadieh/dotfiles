@@ -7,9 +7,7 @@ export EDITOR='vim'
 ZSH_THEME="bira"
 HYPHEN_INSENSITIVE="true"
 DISABLE_UPDATE_PROMPT="true"
-COMPLETION_WAITING_DOTS="true"
 DISABLE_AUTO_TITLE="true"
-ENABLE_CORRECTION="true"
 source $ZSH/oh-my-zsh.sh
 
 # ALIASES

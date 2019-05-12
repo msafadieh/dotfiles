@@ -12,9 +12,9 @@ plugins=(git python zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # ALIASES
+alias code='vscodium'
 alias vassar='ssh msafadieh@mote.cs.vassar.edu'
 alias vps='ssh root@msafadieh.com'
 alias pause='cmus-remote -u'
 alias play='cmus-remote -p'
 alias music='cmus-remote -Q'
-

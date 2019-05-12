@@ -8,6 +8,7 @@ ZSH_THEME="bira"
 HYPHEN_INSENSITIVE="true"
 DISABLE_UPDATE_PROMPT="true"
 DISABLE_AUTO_TITLE="true"
+plugins=(git python zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # ALIASES

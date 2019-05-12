@@ -3,5 +3,6 @@
     "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": true,
     "workbench.iconTheme": "ayu",
-    "workbench.colorTheme": "Ayu Mirage"
+    "workbench.colorTheme": "Ayu Mirage",
+    "window.menuBarVisibility": "toggle"
 }

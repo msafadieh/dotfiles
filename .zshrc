@@ -12,7 +12,6 @@ plugins=(git python zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # ALIASES
-
 alias vassar='ssh msafadieh@mote.cs.vassar.edu'
 alias vps='ssh root@msafadieh.com'
 alias pause='cmus-remote -u'

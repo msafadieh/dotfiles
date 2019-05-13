@@ -4,5 +4,6 @@
     "editor.fontLigatures": true,
     "workbench.iconTheme": "ayu",
     "workbench.colorTheme": "Ayu Mirage",
-    "window.menuBarVisibility": "toggle"
+    "window.menuBarVisibility": "toggle",
+    "window.zoomLevel": 0
 }

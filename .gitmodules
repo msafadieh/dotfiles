@@ -1,0 +1,8 @@
+[submodule ".config/awesome/lain"]
+	path = .config/awesome/lain
+	url = git@github.com:lcpz/lain.git
+	branch = master
+[submodule ".config/awesome/freedesktop"]
+	path = .config/awesome/freedesktop
+	url = git@github.com:lcpz/awesome-freedesktop.git
+	branch = master

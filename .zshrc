@@ -2,6 +2,7 @@
 export PATH=/usr/local/bin:/usr/bin:/bin:/home/mhmd/bin:/usr/local/sbin:/usr/sbin:/home/mhmd/.local/bin
 export ZSH="/home/mhmd/.oh-my-zsh"
 export EDITOR='vim'
+export GPG_TTY=$(tty)
 
 # OH-MY-ZSH CONFIG
 ZSH_THEME="bira"

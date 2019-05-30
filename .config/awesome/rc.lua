@@ -63,16 +63,14 @@ local editor       = os.getenv("EDITOR") or "vim"
 local gui_editor   = "vscodium"
 local browser      = "firefox"
 local guieditor    = "vscodium"
-local scrlocker    = "slock"
+local scrlocker    = "i3lock -c 000000"
 
 awful.util.terminal = terminal
-awful.util.tagnames = { "Main", "Browser", "Terminal" }
+awful.util.tagnames = {  }
 awful.layout.layouts = {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
     --awful.layout.suit.fair,
     --awful.layout.suit.fair.horizontal,
     --awful.layout.suit.spiral,
@@ -84,14 +82,33 @@ awful.layout.layouts = {
     --awful.layout.suit.corner.ne,
     --awful.layout.suit.corner.sw,
     --awful.layout.suit.corner.se,
-    lain.layout.cascade,
-    lain.layout.cascade.tile,
-    lain.layout.centerwork,
-    lain.layout.centerwork.horizontal,
-    lain.layout.termfair,
-    lain.layout.termfair.center,
+    --lain.layout.cascade,
+    --lain.layout.cascade.tile,
+    --lain.layout.centerwork,
+    --lain.layout.centerwork.horizontal,
+    --lain.layout.termfair,
+    --lain.layout.termfair.center,
 }
 
+
+awful.tag.add("Main", {
+	layout = awful.layout.suit.floating,
+	selected = true,
+}
+)
+awful.tag.add("Browser", {
+	layout = awful.layout.suit.tile,
+}
+)
+awful.tag.add("Terminal", {
+	layout = awful.layout.suit.tile,
+	gap    = 4
+}
+)
+awful.tag.add("Editor", {
+	layout = awful.layout.suit.tile,
+}
+)
 awful.util.taglist_buttons = my_table.join(
     awful.button({ }, 1, function(t) t:view_only() end),
     awful.button({ modkey }, 1, function(t)

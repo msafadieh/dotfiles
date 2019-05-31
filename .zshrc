@@ -17,6 +17,4 @@ alias dualdis='xrandr --output VGA-1 --pos 1920x0 --output HDMI-1 --pos 0x0 --ou
 alias code='vscodium'
 alias vassar='ssh msafadieh@mote.cs.vassar.edu'
 alias vps='ssh mhmd@msafadieh.com'
-alias pause='cmus-remote -u'
-alias play='cmus-remote -p'
-alias music='cmus-remote -Q'
+

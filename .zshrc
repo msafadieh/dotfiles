@@ -17,4 +17,9 @@ alias dualdis='xrandr --output VGA-1 --pos 1920x0 --output HDMI-1 --pos 0x0 --ou
 alias code='vscodium'
 alias vassar='ssh msafadieh@mote.cs.vassar.edu'
 alias vps='ssh mhmd@msafadieh.com'
+alias eduroam='sh ~/.scripts/setup_eduroam.sh'
+
+if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+  exec startx
+fi
 

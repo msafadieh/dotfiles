@@ -13,6 +13,7 @@ plugins=(git python zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # ALIASES
+alias ssh='kitty +kitten ssh'
 alias dualdis='xrandr --output VGA-1 --pos 1920x0 --output HDMI-1 --pos 0x0 --output LVDS-1 --off'
 alias code='vscodium'
 alias vassar='ssh msafadieh@mote.cs.vassar.edu'

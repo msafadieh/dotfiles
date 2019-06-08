@@ -16,7 +16,7 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 local theme                                     = {}
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/multicolor"
-theme.wallpaper                                 = os.getenv("HOME") .. "/.config/awesome/wallpaper.jpg" 
+theme.wallpaper                                 = os.getenv("HOME") .. "/.config/awesome/wallpaper.png" 
 theme.font                                      = "xos4 Terminus 8"
 theme.menu_bg_normal                            = "#000000"
 theme.menu_bg_focus                             = "#000000"
@@ -188,13 +188,13 @@ local bat = lain.widget.bat({
 
 -- ALSA volume
 local volicon = wibox.widget.imagebox(theme.widget_vol)
-theme.volume = lain.widget.alsa({
+theme.volume = lain.widget.pulse({
     settings = function()
         if volume_now.status == "off" then
-            volume_now.level = volume_now.level .. "M"
+            volume_now.level = volume_now.left .. "M"
         end
 
-        widget:set_markup(markup.fontfg(theme.font, "#7493d2", volume_now.level .. "% "))
+        widget:set_markup(markup.fontfg(theme.font, "#7493d2", volume_now.left .. "% "))
     end
 })
 

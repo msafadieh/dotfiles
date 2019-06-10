@@ -66,9 +66,8 @@ local guieditor    = "vscodium"
 local scrlocker    = "i3lock -c 000000"
 
 awful.util.terminal = terminal
-awful.util.tagnames = {  }
+awful.util.tagnames = {"I", "II", "III", "VI"}
 awful.layout.layouts = {
-    awful.layout.suit.floating,
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
     --awful.layout.suit.fair,
@@ -91,24 +90,6 @@ awful.layout.layouts = {
 }
 
 
-awful.tag.add("Main", {
-	layout = awful.layout.suit.floating,
-	selected = true,
-}
-)
-awful.tag.add("Browser", {
-	layout = awful.layout.suit.tile,
-}
-)
-awful.tag.add("Terminal", {
-	layout = awful.layout.suit.tile,
-	gap    = 4
-}
-)
-awful.tag.add("Editor", {
-	layout = awful.layout.suit.tile,
-}
-)
 awful.util.taglist_buttons = my_table.join(
     awful.button({ }, 1, function(t) t:view_only() end),
     awful.button({ modkey }, 1, function(t)
@@ -172,7 +153,7 @@ lain.layout.cascade.tile.extra_padding = dpi(5)
 lain.layout.cascade.tile.nmaster       = 5
 lain.layout.cascade.tile.ncol          = 2
 
-beautiful.init(string.format("%s/.config/awesome/themes/%s/theme-personal.lua", os.getenv("HOME"), chosen_theme))
+beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme))
 -- }}}
 
 -- {{{ Menu

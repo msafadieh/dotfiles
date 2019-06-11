@@ -20,7 +20,7 @@ alias code='vscodium'
 alias vassar='ssh msafadieh@mote.cs.vassar.edu'
 alias vps='ssh mhmd@msafadieh.com'
 alias eduroam='sh ~/.scripts/setup_eduroam.sh'
-alias gpg-pass = 'sh ~/.scripts/get_gpg.sh' 
+alias gpg-pass='sh ~/.scripts/get-gpg.sh' 
 
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
   exec startx

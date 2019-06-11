@@ -102,9 +102,9 @@ awful.util.taglist_buttons = my_table.join(
         if client.focus then
             client.focus:toggle_tag(t)
         end
-    end),
-    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
-    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
+    end)
+    -- awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
+    -- awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
 )
 
 awful.util.tasklist_buttons = my_table.join(
@@ -138,9 +138,9 @@ awful.util.tasklist_buttons = my_table.join(
                 instance = awful.menu.clients({theme = {width = dpi(250)}})
             end
         end
-    end),
-    awful.button({ }, 4, function () awful.client.focus.byidx(1) end),
-    awful.button({ }, 5, function () awful.client.focus.byidx(-1) end)
+    end)
+    -- awful.button({ }, 4, function () awful.client.focus.byidx(1) end),
+    -- awful.button({ }, 5, function () awful.client.focus.byidx(-1) end)
 )
 
 lain.layout.termfair.nmaster           = 3
@@ -212,9 +212,9 @@ awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) 
 
 -- {{{ Mouse bindings
 root.buttons(my_table.join(
-    awful.button({ }, 3, function () awful.util.mymainmenu:toggle() end),
-    awful.button({ }, 4, awful.tag.viewnext),
-    awful.button({ }, 5, awful.tag.viewprev)
+    awful.button({ }, 3, function () awful.util.mymainmenu:toggle() end)
+    -- awful.button({ }, 4, awful.tag.viewnext),
+    -- awful.button({ }, 5, awful.tag.viewprev)
 ))
 -- }}}
 

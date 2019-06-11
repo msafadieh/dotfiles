@@ -63,7 +63,6 @@ set format_treewin_artist=%a
 set icecast_default_charset=ISO-8859-1
 set id3_default_charset=ISO-8859-1
 set input.cue.priority=50
-set input.mad.priority=55
 set input.wav.priority=50
 set lib_add_filter=
 set lib_sort=albumartist date album discnumber tracknumber title filename play_count

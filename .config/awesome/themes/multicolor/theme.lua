@@ -177,7 +177,7 @@ local baticon = wibox.widget.imagebox(theme.widget_batt)
 local bat = lain.widget.bat({
     settings = function()
         local perc = bat_now.perc ~= "N/A" and bat_now.perc .. "%" or bat_now.perc
-
+	local full_notify = "off"
         if bat_now.ac_status == 1 then
             perc = perc .. " plug"
         end

@@ -1,3 +1,3 @@
 #!/bin/sh
-eval $(op signin my)
-op get item "Private PGP" | jq -j '.details.sections[0].fields[0].v' | xclip -selection clipboard
+lpass login me@msafadieh.com
+lpass show 7973861828950534859 --password | tr -d \" | xclip -selection clipboard

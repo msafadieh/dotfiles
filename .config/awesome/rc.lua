@@ -394,31 +394,31 @@ globalkeys = my_table.join(
     -- ALSA volume control
     awful.key({ altkey }, "Up",
         function ()
-            os.execute(string.format("pactl set-sink-volume 0 +1%%"))
+            os.execute("/home/mhmd/.scripts/pavolume increase 1%%")
             beautiful.volume.update()
         end,
         {description = "volume up", group = "hotkeys"}),
     awful.key({ altkey }, "Down",
         function ()
-            os.execute(string.format("pactl set-sink-volume 0 -1%%"))
+            os.execute("/home/mhmd/.scripts/pavolume decrease 1%%")
             beautiful.volume.update()
         end,
         {description = "volume down", group = "hotkeys"}),
     awful.key({ altkey }, "m",
         function ()
-            os.execute(string.format("amixer -q set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
+            os.execute("/home/mhmd/.scripts/pavolume mute")
             beautiful.volume.update()
         end,
         {description = "toggle mute", group = "hotkeys"}),
     awful.key({ altkey, "Control" }, "m",
         function ()
-            os.execute(string.format("pactl set-sink-volume 0 100%%"))
+            os.execute("/home/mhmd/.scripts/pavolume increase 100%%")
             beautiful.volume.update()
         end,
         {description = "volume 100%", group = "hotkeys"}),
     awful.key({ altkey, "Control" }, "0",
         function ()
-            os.execute(string.format("pactl set-sink-volume 0 0%%"))
+            os.execute("/home/mhmd/.scripts/pavolume decrease 100%%")
             beautiful.volume.update()
         end,
         {description = "volume 0%", group = "hotkeys"}),

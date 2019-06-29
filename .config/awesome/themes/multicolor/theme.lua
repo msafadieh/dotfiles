@@ -10,6 +10,7 @@ local lain  = require("lain")
 local awful = require("awful")
 local wibox = require("wibox")
 local dpi   = require("beautiful.xresources").apply_dpi
+local menubar = require("menubar")
 
 local os = os
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
@@ -96,7 +97,7 @@ local markup = lain.util.markup
 -- Textclock
 os.setlocale(os.getenv("LANG")) -- to localize the clock
 local clockicon = wibox.widget.imagebox(theme.widget_clock)
-local mytextclock = wibox.widget.textclock(markup("#7788af", "%A %d %B ") .. markup("#ab7367", ">") .. markup("#de5e1e", " %H:%M "))
+local mytextclock = wibox.widget.textclock(markup("#7788af", "%A %d %B ") .. markup("#ab7367", "~") .. markup("#de5e1e", " %H:%M "))
 mytextclock.font = theme.font
 
 -- Calendar
@@ -112,7 +113,7 @@ theme.cal = lain.widget.cal({
 -- Weather
 local weathericon = wibox.widget.imagebox(theme.widget_weather)
 theme.weather = lain.widget.weather({
-    city_id = 2643743, -- placeholder (London)
+    city_id = 5132143, -- Poughkeepsie
     notification_preset = { font = "xos4 Terminus 10", fg = theme.fg_normal },
     weather_na_markup = markup.fontfg(theme.font, "#eca4c4", "N/A "),
     settings = function()
@@ -122,67 +123,11 @@ theme.weather = lain.widget.weather({
     end
 })
 
--- / fs
---[[ commented because it needs Gio/Glib >= 2.54
-local fsicon = wibox.widget.imagebox(theme.widget_fs)
-theme.fs = lain.widget.fs({
-    notification_preset = { font = "xos4 Terminus 10", fg = theme.fg_normal },
-    settings  = function()
-        widget:set_markup(markup.fontfg(theme.font, "#80d9d8", string.format("%.1f", fs_now["/"].used) .. "% "))
-    end
-})
---]]
-
--- Mail IMAP check
---[[ commented because it needs to be set before use
-local mailicon = wibox.widget.imagebox()
-theme.mail = lain.widget.imap({
-    timeout  = 180,
-    server   = "server",
-    mail     = "mail",
-    password = "keyring get mail",
-    settings = function()
-        if mailcount > 0 then
-            mailicon:set_image(theme.widget_mail)
-            widget:set_markup(markup.fontfg(theme.font, "#cccccc", mailcount .. " "))
-        else
-            widget:set_text("")
-            --mailicon:set_image() -- not working in 4.0
-            mailicon._private.image = nil
-            mailicon:emit_signal("widget::redraw_needed")
-            mailicon:emit_signal("widget::layout_changed")
-        end
-    end
-})
---]]
-
 -- CPU
 local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
 local cpu = lain.widget.cpu({
     settings = function()
         widget:set_markup(markup.fontfg(theme.font, "#e33a6e", cpu_now.usage .. "% "))
-    end
-})
-
--- Coretemp
-local tempicon = wibox.widget.imagebox(theme.widget_temp)
-local temp = lain.widget.temp({
-    settings = function()
-        widget:set_markup(markup.fontfg(theme.font, "#f1af5f", coretemp_now .. "°C "))
-    end
-})
-
--- Battery
-local baticon = wibox.widget.imagebox(theme.widget_batt)
-local bat = lain.widget.bat({
-    settings = function()
-        local perc = bat_now.perc ~= "N/A" and bat_now.perc .. "%" or bat_now.perc
-        local full_notify = "off"
-        if bat_now.ac_status == 1 then
-            perc = perc .. " plug"
-        end
-
-        widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, perc .. " "))
     end
 })
 
@@ -223,34 +168,6 @@ local memory = lain.widget.mem({
     end
 })
 
--- MPD
-local mpdicon = wibox.widget.imagebox()
-theme.mpd = lain.widget.mpd({
-    settings = function()
-        mpd_notification_preset = {
-            text = string.format("%s [%s] - %s\n%s", mpd_now.artist,
-                   mpd_now.album, mpd_now.date, mpd_now.title)
-        }
-
-        if mpd_now.state == "play" then
-            artist = mpd_now.artist .. " > "
-            title  = mpd_now.title .. " "
-            mpdicon:set_image(theme.widget_note_on)
-        elseif mpd_now.state == "pause" then
-            artist = "mpd "
-            title  = "paused "
-        else
-            artist = ""
-            title  = ""
-            --mpdicon:set_image() -- not working in 4.0
-            mpdicon._private.image = nil
-            mpdicon:emit_signal("widget::redraw_needed")
-            mpdicon:emit_signal("widget::layout_changed")
-        end
-        widget:set_markup(markup.fontfg(theme.font, "#e54c62", artist) .. markup.fontfg(theme.font, "#b2b2b2", title))
-    end
-})
-
 function theme.at_screen_connect(s)
     -- Quake application
     s.quake = lain.util.quake({ app = awful.util.terminal })
@@ -280,7 +197,7 @@ function theme.at_screen_connect(s)
     s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons)
 
     -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons)
+    s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.minimizedcurrenttags, awful.util.tasklist_buttons)
 
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(20), bg = theme.bg_normal, fg = theme.fg_normal })
@@ -292,9 +209,8 @@ function theme.at_screen_connect(s)
             layout = wibox.layout.fixed.horizontal,
             --s.mylayoutbox,
             s.mytaglist,
+            s.mytasklist,
             s.mypromptbox,
-            mpdicon,
-            theme.mpd.widget,
         },
         --s.mytasklist, -- Middle widget
         nil,
@@ -315,10 +231,6 @@ function theme.at_screen_connect(s)
             cpu.widget,
             weathericon,
             theme.weather.widget,
-            tempicon,
-            temp.widget,
-            baticon,
-            bat.widget,
             clockicon,
             mytextclock,
             s.mylayoutbox,

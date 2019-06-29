@@ -22,6 +22,7 @@ alias vassar='ssh msafadieh@mote.cs.vassar.edu'
 alias vps='ssh mhmd@msafadieh.com'
 alias eduroam='sh ~/.scripts/setup_eduroam.sh'
 alias gpg-pass='sh ~/.scripts/get-gpg.sh' 
+alias check-bat='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
   exec startx

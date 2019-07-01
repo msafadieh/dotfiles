@@ -26,6 +26,5 @@ alias check-bat='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
   exec startx
-  [[ $(xrandr | grep -i "HDMI-1 connected") ]] && [[ $(xrandr | grep -i "VGA-1 connected") ]] && dualdis
 fi
 

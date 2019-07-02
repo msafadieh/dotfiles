@@ -40,6 +40,8 @@ do
 end
 -- }}}
 
+awful.spawn.with_shell("~/.config/awesome/autorun.sh")
+
 local chosen_theme = "multicolor"
 local modkey       = "Mod4"
 local altkey       = "Mod1"

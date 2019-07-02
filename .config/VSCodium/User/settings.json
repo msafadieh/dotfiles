@@ -18,5 +18,9 @@
     "explorer.confirmDelete": false,
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "python.jediEnabled": false
+    "python.jediEnabled": false,
+    "workbench.enableExperiments": false,
+    "update.enableWindowsBackgroundUpdates": false,
+    "workbench.settings.enableNaturalLanguageSearch": false,
+    "update.mode": "none"
 }

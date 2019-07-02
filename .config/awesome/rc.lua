@@ -149,7 +149,7 @@ awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) 
 globalkeys = my_table.join(
     -- Take a screenshot
     -- https://github.com/lcpz/dots/blob/master/bin/screenshot
-    awful.key({ altkey }, "p", function() os.execute("/home/mhmd/.scripts/screenshot") end,
+    awful.key({ altkey }, "p", function() os.execute("~/.scripts/screenshot") end,
               {description = "take a screenshot", group = "hotkeys"}),
 
     -- X screen locker
@@ -289,31 +289,31 @@ globalkeys = my_table.join(
     -- ALSA volume control
     awful.key({ altkey }, "Up",
         function ()
-            os.execute("/home/mhmd/.scripts/pavolume increase 1%%")
+            os.execute("~/.scripts/pavolume increase 1%%")
             beautiful.volume.update()
         end,
         {description = "volume up", group = "hotkeys"}),
     awful.key({ altkey }, "Down",
         function ()
-            os.execute("/home/mhmd/.scripts/pavolume decrease 1%%")
+            os.execute("~/.scripts/pavolume decrease 1%%")
             beautiful.volume.update()
         end,
         {description = "volume down", group = "hotkeys"}),
     awful.key({ altkey }, "m",
         function ()
-            os.execute("/home/mhmd/.scripts/pavolume mute")
+            os.execute("~/.scripts/pavolume mute")
             beautiful.volume.update()
         end,
         {description = "toggle mute", group = "hotkeys"}),
     awful.key({ altkey, "Control" }, "m",
         function ()
-            os.execute("/home/mhmd/.scripts/pavolume increase 100%%")
+            os.execute("~/.scripts/pavolume increase 100%%")
             beautiful.volume.update()
         end,
         {description = "volume 100%", group = "hotkeys"}),
     awful.key({ altkey, "Control" }, "0",
         function ()
-            os.execute("/home/mhmd/.scripts/pavolume decrease 100%%")
+            os.execute("~/.scripts/pavolume decrease 100%%")
             beautiful.volume.update()
         end,
         {description = "volume 0%", group = "hotkeys"}),

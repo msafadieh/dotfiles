@@ -45,7 +45,7 @@ awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 local chosen_theme = "multicolor"
 local modkey       = "Mod4"
 local altkey       = "Mod1"
-local terminal     = "kitty"
+local terminal     = "alacritty"
 local editor       = os.getenv("EDITOR") or "vim"
 local gui_editor   = "vscodium"
 local browser      = "firefox"
@@ -358,6 +358,8 @@ clientkeys = my_table.join(
               {description = "close", group = "client"}),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"}),
+    awful.key({ modkey,           }, "t", awful.titlebar.toggle                                 ,
+              {description = "toggle titlebar", group= "client"}),                            
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
               {description = "move to master", group = "client"}),
     awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end,

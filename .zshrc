@@ -17,7 +17,6 @@ source $ZSH/oh-my-zsh.sh
 alias ssh='kitty +kitten ssh'
 alias ld-off='xrandr --output LVDS-1 --off'
 alias dualdis='xrandr --output HDMI-1 --mode 1920x1080 --pos 1920x0 --output VGA-1 --mode 1920x1080 --pos 0x0 --output LVDS-1 --off'
-alias code='vscodium'
 alias vassar='ssh msafadieh@mote.cs.vassar.edu'
 alias vps='ssh mhmd@msafadieh.com'
 alias eduroam='sh ~/.scripts/setup_eduroam.sh'

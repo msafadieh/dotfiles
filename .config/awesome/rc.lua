@@ -47,9 +47,9 @@ local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "alacritty"
 local editor       = os.getenv("EDITOR") or "vim"
-local gui_editor   = "vscodium"
+local gui_editor   = "code"
 local browser      = "firefox"
-local guieditor    = "vscodium"
+local guieditor    = "code"
 local scrlocker    = "i3lock -c 000000"
 local chatapp      = "riot-desktop"
 
@@ -145,11 +145,16 @@ end)
 awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) end)
 -- }}}F
 
+local screenshot = function()
+	os.execute("~/.scripts/screenshot")
+	naughty.notify({ preset = naughty.config.presets.normal,
+			title = "Screenshot taken!"})
+end
 -- {{{ Key bindings
 globalkeys = my_table.join(
     -- Take a screenshot
     -- https://github.com/lcpz/dots/blob/master/bin/screenshot
-    awful.key({ altkey }, "p", function() os.execute("~/.scripts/screenshot") end,
+    awful.key({ altkey }, "p", screenshot,
               {description = "take a screenshot", group = "hotkeys"}),
 
     -- X screen locker

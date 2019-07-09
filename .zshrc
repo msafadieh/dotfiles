@@ -1,5 +1,5 @@
 # VARIABLES
-export PATH=/usr/bin:/home/mhmd/.local/bin:/home/mhmd/.cargo/bin
+export PATH=/usr/bin:~/.local/bin:~/.cargo/bin
 export ZSH="/home/mhmd/.oh-my-zsh"
 export EDITOR='vim'
 export GPG_TTY=$(tty)

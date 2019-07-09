@@ -150,6 +150,7 @@ local screenshot = function()
 	naughty.notify({ preset = naughty.config.presets.normal,
 			title = "Screenshot taken!"})
 end
+
 -- {{{ Key bindings
 globalkeys = my_table.join(
     -- Take a screenshot

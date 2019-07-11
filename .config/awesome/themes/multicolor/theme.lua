@@ -94,6 +94,25 @@ theme.titlebar_maximized_button_focus_active    = theme.confdir .. "/icons/title
 
 local markup = lain.util.markup
 
+-- Battery
+--local baticon = wibox.widget.imagebox(theme.widget.batt)
+--local batwidget = lain.widget.bat({
+--	full_notify = "off"
+--})
+--
+local baticon = wibox.widget.imagebox(theme.widget_batt)
+local batwidget = lain.widget.bat({
+    settings = function()
+        local perc = bat_now.perc ~= "N/A" and bat_now.perc .. "%" or bat_now.perc
+
+        if bat_now.ac_status == 1 then
+            perc = ""
+        end
+
+        widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, perc .. " "))
+    end
+})
+
 -- Textclock
 os.setlocale(os.getenv("LANG")) -- to localize the clock
 local clockicon = wibox.widget.imagebox(theme.widget_clock)
@@ -148,6 +167,8 @@ local netdownicon = wibox.widget.imagebox(theme.widget_netdown)
 local netdowninfo = wibox.widget.textbox()
 local netupicon = wibox.widget.imagebox(theme.widget_netup)
 local netupinfo = lain.widget.net({
+    wifi_state = "on",
+    notify = "off",
     settings = function()
         if iface ~= "network off" and
            string.match(theme.weather.widget.text, "N/A")
@@ -156,8 +177,13 @@ local netupinfo = lain.widget.net({
         end
 
         widget:set_markup(markup.fontfg(theme.font, "#e54c62", net_now.sent .. " "))
+
         netdowninfo:set_markup(markup.fontfg(theme.font, "#87af5f", net_now.received .. " "))
-    end
+
+
+	end
+
+
 })
 
 -- MEM
@@ -223,7 +249,7 @@ function theme.at_screen_connect(s)
             netdowninfo,
             netupicon,
             netupinfo.widget,
-            volicon,
+	    volicon,
             theme.volume.widget,
             memicon,
             memory.widget,
@@ -231,6 +257,8 @@ function theme.at_screen_connect(s)
             cpu.widget,
             weathericon,
             theme.weather.widget,
+	    baticon,
+	    batwidget.widget,
             clockicon,
             mytextclock,
             s.mylayoutbox,

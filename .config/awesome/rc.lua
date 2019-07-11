@@ -153,6 +153,12 @@ end
 
 -- {{{ Key bindings
 globalkeys = my_table.join(
+        -- Brightness
+
+    awful.key({ }, "XF86MonBrightnessDown", function ()
+        awful.util.spawn("xbacklight -dec 15") end),
+    awful.key({ }, "XF86MonBrightnessUp", function ()
+        awful.util.spawn("xbacklight -inc 15") end),
     -- Take a screenshot
     -- https://github.com/lcpz/dots/blob/master/bin/screenshot
     awful.key({ altkey }, "p", screenshot,
@@ -293,36 +299,24 @@ globalkeys = my_table.join(
               {description = "restore minimized", group = "client"}),
 
     -- ALSA volume control
-    awful.key({ altkey }, "Up",
+    awful.key({  }, "XF86AudioRaiseVolume",
         function ()
-            os.execute("~/.scripts/pavolume increase 1%%")
+            os.execute("pactl set-sink-volume @DEFAULT_SINK@ +5%")
             beautiful.volume.update()
         end,
         {description = "volume up", group = "hotkeys"}),
-    awful.key({ altkey }, "Down",
+    awful.key({  }, "XF86AudioLowerVolume",
         function ()
-            os.execute("~/.scripts/pavolume decrease 1%%")
+            os.execute("pactl set-sink-volume @DEFAULT_SINK@ -5%")
             beautiful.volume.update()
         end,
         {description = "volume down", group = "hotkeys"}),
-    awful.key({ altkey }, "m",
+    awful.key({ }, "XF86AudioMute",
         function ()
-            os.execute("~/.scripts/pavolume mute")
+            os.execute("pactl set-sink-mute @DEFAULT_SINK@ toggle")
             beautiful.volume.update()
         end,
         {description = "toggle mute", group = "hotkeys"}),
-    awful.key({ altkey, "Control" }, "m",
-        function ()
-            os.execute("~/.scripts/pavolume increase 100%%")
-            beautiful.volume.update()
-        end,
-        {description = "volume 100%", group = "hotkeys"}),
-    awful.key({ altkey, "Control" }, "0",
-        function ()
-            os.execute("~/.scripts/pavolume decrease 100%%")
-            beautiful.volume.update()
-        end,
-        {description = "volume 0%", group = "hotkeys"}),
 
     -- User programs
     awful.key({ modkey }, "q", function () awful.spawn(browser) end,

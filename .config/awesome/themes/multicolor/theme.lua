@@ -95,18 +95,18 @@ theme.titlebar_maximized_button_focus_active    = theme.confdir .. "/icons/title
 local markup = lain.util.markup
 
 -- Battery
---local baticon = wibox.widget.imagebox(theme.widget.batt)
---local batwidget = lain.widget.bat({
---	full_notify = "off"
---})
---
 local baticon = wibox.widget.imagebox(theme.widget_batt)
 local batwidget = lain.widget.bat({
+    timeout = 5,
     settings = function()
         local perc = bat_now.perc ~= "N/A" and bat_now.perc .. "%" or bat_now.perc
 
         if bat_now.ac_status == 1 then
-            perc = ""
+		if perc == "100%" then
+			perc = "full"
+		else
+			perc = "charging"
+		end
         end
 
         widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, perc .. " "))
@@ -167,7 +167,6 @@ local netdownicon = wibox.widget.imagebox(theme.widget_netdown)
 local netdowninfo = wibox.widget.textbox()
 local netupicon = wibox.widget.imagebox(theme.widget_netup)
 local netupinfo = lain.widget.net({
-    wifi_state = "on",
     notify = "off",
     settings = function()
         if iface ~= "network off" and

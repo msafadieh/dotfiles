@@ -325,6 +325,8 @@ globalkeys = my_table.join(
               {description = "run gui editor", group = "launcher"}),
     awful.key({ modkey }, "z", function () awful.spawn(chatapp) end,
               {description = "run chat app", group = "launcher"}),
+    awful.key({ modkey, "Shift" }, "Return", function () awful.spawn("alacritty --class ncmpcpp -e ncmpcpp") end,
+              {description = "run music app", group = "launcher"}),
 
     -- Default
     -- Menubar
@@ -464,6 +466,15 @@ root.keys(globalkeys)
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
     -- All clients will match this rule.
+    
+    { rule = { instance = "ncmpcpp" },
+      properties = { floating = true,
+      		     ontop = true,
+	             placement = awful.placement.centered
+	     }
+    },
+
+
     { rule = { },
       properties = { border_width = beautiful.border_width,
                      border_color = beautiful.border_normal,
@@ -472,7 +483,7 @@ awful.rules.rules = {
                      keys = clientkeys,
                      buttons = clientbuttons,
                      screen = awful.screen.preferred,
-                     placement = awful.placement.no_overlap+awful.placement.no_offscreen,
+                     --placement = awful.placement.no_overlap+awful.placement.no_offscreen,
                      size_hints_honor = false
      }
     },

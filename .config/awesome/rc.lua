@@ -356,7 +356,10 @@ clientkeys = my_table.join(
         {description = "toggle fullscreen", group = "client"}),
     awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
               {description = "close", group = "client"}),
-    awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
+    awful.key({ modkey, "Control" }, "space",  function (c) 
+	    awful.client.floating.toggle(c) 
+    	    c.ontop = not c.ontop	
+         end,
               {description = "toggle floating", group = "client"}),
     awful.key({ modkey,           }, "t", awful.titlebar.toggle                                 ,
               {description = "toggle titlebar", group= "client"}),                            
@@ -472,6 +475,9 @@ awful.rules.rules = {
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen,
                      size_hints_honor = false
      }
+    },
+    { rule = { floating = true },
+      properties = { ontop = true }
     },
 
     -- Titlebars

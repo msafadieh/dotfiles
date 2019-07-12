@@ -1,0 +1,12 @@
+[Unit]
+Description=Restart wireguard vpn
+After=sleep.target
+
+[Service]
+Type=simple
+ExecStartPre=/usr/bin/sleep 4
+ExecStart=/usr/bin/systemctl restart wg-quick@mullvad-us1 
+Restart=on-failure
+
+[Install]
+WantedBy=sleep.target

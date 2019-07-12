@@ -17,7 +17,7 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 local theme                                     = {}
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/multicolor"
-theme.wallpaper                                 = os.getenv("HOME") .. "/.config/awesome/wallpaper" 
+theme.wallpaper                                 = os.getenv("HOME") .. "/.config/awesome/wallpaper"
 theme.font                                      = "xos4 Terminus 8"
 theme.menu_bg_normal                            = "#000000"
 theme.menu_bg_focus                             = "#000000"
@@ -102,11 +102,11 @@ local batwidget = lain.widget.bat({
         local perc = bat_now.perc ~= "N/A" and bat_now.perc .. "%" or bat_now.perc
 
         if bat_now.ac_status == 1 then
-		if perc == "100%" then
-			perc = "full"
-		else
-			perc = "charging"
-		end
+            if perc == "100%" then
+                perc = "full"
+            else
+                perc = "charging"
+            end
         end
 
         widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, perc .. " "))
@@ -170,7 +170,7 @@ local netupinfo = lain.widget.net({
     notify = "off",
     settings = function()
         if iface ~= "network off" and
-           string.match(theme.weather.widget.text, "N/A")
+            string.match(theme.weather.widget.text, "N/A")
         then
             theme.weather.update()
         end
@@ -180,7 +180,7 @@ local netupinfo = lain.widget.net({
         netdowninfo:set_markup(markup.fontfg(theme.font, "#87af5f", net_now.received .. " "))
 
 
-	end
+    end
 
 
 })
@@ -199,7 +199,7 @@ theme.mpd = lain.widget.mpd({
     settings = function()
         mpd_notification_preset = {
             text = string.format("%s \n\n%s - %s", mpd_now.title,
-                   mpd_now.artist, mpd_now.album)
+                mpd_now.artist, mpd_now.album)
         }
 
         if mpd_now.state == "play" then
@@ -207,8 +207,9 @@ theme.mpd = lain.widget.mpd({
             title  = mpd_now.title .. " "
             mpdicon:set_image(theme.widget_note_on)
         elseif mpd_now.state == "pause" then
-            artist = mpd_now.artist .. " > "
-            title  = mpd_now.title .. " (paused) "
+            artist = "mpd "
+            title  = "paused "
+            mpdicon:set_image(theme.widget_note_on)
         else
             artist = ""
             title  = ""
@@ -241,11 +242,11 @@ function theme.at_screen_connect(s)
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
     s.mylayoutbox:buttons(my_table.join(
-                           awful.button({}, 1, function () awful.layout.inc( 1) end),
-                           awful.button({}, 2, function () awful.layout.set( awful.layout.layouts[1] ) end),
-                           awful.button({}, 3, function () awful.layout.inc(-1) end),
-                           awful.button({}, 4, function () awful.layout.inc( 1) end),
-                           awful.button({}, 5, function () awful.layout.inc(-1) end)))
+        awful.button({}, 1, function () awful.layout.inc( 1) end),
+        awful.button({}, 2, function () awful.layout.set( awful.layout.layouts[1] ) end),
+        awful.button({}, 3, function () awful.layout.inc(-1) end),
+        awful.button({}, 4, function () awful.layout.inc( 1) end),
+        awful.button({}, 5, function () awful.layout.inc(-1) end)))
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons)
 
@@ -272,13 +273,13 @@ function theme.at_screen_connect(s)
             wibox.widget.systray(),
             --mailicon,
             --theme.mail.widget,
-	    mpdicon,
-	    theme.mpd.widget,
+            mpdicon,
+            theme.mpd.widget,
             netdownicon,
             netdowninfo,
             netupicon,
             netupinfo.widget,
-	    volicon,
+            volicon,
             theme.volume.widget,
             memicon,
             memory.widget,
@@ -286,8 +287,8 @@ function theme.at_screen_connect(s)
             cpu.widget,
             weathericon,
             theme.weather.widget,
-	    baticon,
-	    batwidget.widget,
+            baticon,
+            batwidget.widget,
             clockicon,
             mytextclock,
             s.mylayoutbox,

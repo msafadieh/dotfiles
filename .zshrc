@@ -14,10 +14,9 @@ plugins=(git python zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # ALIASES
-alias ld-off='xrandr --output LVDS-1 --off'
-alias dualdis='xrandr --output HDMI-1 --mode 1920x1080 --pos 1920x0 --output VGA-1 --mode 1920x1080 --pos 0x0 --output LVDS-1 --off'
+alias ld-off='xrandr --output eDP --off'
 alias vassar='ssh msafadieh@mote.cs.vassar.edu'
-alias vps='ssh mhmd@msafadieh.com'
+alias vps='ssh -p 961 mhmd@msafadieh.com'
 alias eduroam='sh ~/.scripts/setup_eduroam.sh'
 alias gpg-pass='sh ~/.scripts/get-gpg.sh' 
 alias check-bat='upower -i /org/freedesktop/UPower/devices/battery_BAT0'

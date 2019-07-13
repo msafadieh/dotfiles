@@ -4,4 +4,4 @@ compton -CGb
 
 mpd
 
-xautolock -time 10 -locker "systemctl suspend" -detectsleep -corners "0-00" -notify 30 -notifier "notify-send -u critical 'Going to sleep in 30 seconds'" &
+xautolock -time 15 -locker "systemctl suspend" -detectsleep -corners "0-00" -notify 30 -notifier "notify-send -t 30000 -u critical 'Going to sleep in 30 seconds'" &

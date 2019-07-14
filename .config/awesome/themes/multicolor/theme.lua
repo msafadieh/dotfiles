@@ -271,8 +271,6 @@ function theme.at_screen_connect(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
-            --mailicon,
-            --theme.mail.widget,
             mpdicon,
             theme.mpd.widget,
             netdownicon,

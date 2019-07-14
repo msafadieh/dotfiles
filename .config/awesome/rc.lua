@@ -232,7 +232,7 @@ globalkeys = my_table.join(
     -- Dynamic tagging
     awful.key({ modkey, "Shift" }, "n", function () lain.util.add_tag() end,
         {description = "add new tag", group = "tag"}),
-    awful.key({ modkey, "Shift" }, "r", function () lain.util.rename_tag() end,
+    awful.key({ modkey, "Control" }, "r", function () lain.util.rename_tag() end,
         {description = "rename tag", group = "tag"}),
     awful.key({ modkey, "Shift" }, "d", function () lain.util.delete_tag() end,
         {description = "delete tag", group = "tag"}),
@@ -240,7 +240,7 @@ globalkeys = my_table.join(
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
         {description = "open a terminal", group = "launcher"}),
-    awful.key({ modkey, "Control" }, "r", awesome.restart,
+    awful.key({ modkey, "Shift" }, "r", awesome.restart,
         {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
         {description = "quit awesome", group = "awesome"}),
@@ -326,7 +326,7 @@ clientkeys = my_table.join(
         {description = "toggle fullscreen", group = "client"}),
     awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
         {description = "close", group = "client"}),
-    awful.key({ modkey, "Control" }, "space",
+    awful.key({ "Control" }, "space",
         function (c)
             awful.client.floating.toggle(c)
             c.ontop = not c.ontop
@@ -434,7 +434,7 @@ root.keys(globalkeys)
 awful.rules.rules = {
     -- All clients will match this rule.
 
-    { rule = { instance = "ncmpcpp" },
+    { rule_any = { instance = { "ncmpcpp" }, class = { "Tor Browser" } },
         properties = { floating = true,
             ontop = true,
         }

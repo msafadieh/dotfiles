@@ -42,6 +42,7 @@ end
 
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 
+
 local chosen_theme = "multicolor"
 local modkey       = "Mod4"
 local altkey       = "Mod1"
@@ -290,6 +291,8 @@ globalkeys = my_table.join(
         {description = "toggle mute", group = "hotkeys"}),
 
     -- User programs
+    awful.key({ modkey }, "g", function() awful.spawn.with_shell("~/.scripts/get-gpg.sh") end,
+        {description = "fetch gpg password", group = "launcher"}),
     awful.key({ modkey }, "q", function () awful.spawn(browser) end,
         {description = "run browser", group = "launcher"}),
     awful.key({ modkey }, "a", function () awful.spawn(guieditor) end,

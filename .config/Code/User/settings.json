@@ -22,5 +22,6 @@
     "update.mode": "none",
     "workbench.enableExperiments": false,
     "workbench.settings.enableNaturalLanguageSearch": false,
-    "git.autofetch": true
+    "git.autofetch": true,
+    "typescript.updateImportsOnFileMove.enabled": "always"
 }

@@ -2,6 +2,7 @@
 export PATH=/usr/bin:~/.local/bin:~/.cargo/bin
 export ZSH="/home/mhmd/.oh-my-zsh"
 export EDITOR='vim'
+export SYSTEMD_EDITOR='vim'
 export GPG_TTY=$(tty)
 export LC_ALL=en_US.UTF-8
 
@@ -22,6 +23,6 @@ alias gpg-pass='sh ~/.scripts/get-gpg.sh'
 alias check-bat='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-  exec startx
+  exec startx -- vt1 &> /dev/null
 fi
 

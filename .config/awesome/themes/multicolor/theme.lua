@@ -11,6 +11,7 @@ local awful = require("awful")
 local wibox = require("wibox")
 local dpi   = require("beautiful.xresources").apply_dpi
 local menubar = require("menubar")
+local net_widgets = require("net_widgets")
 
 local os = os
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
@@ -93,6 +94,9 @@ theme.titlebar_maximized_button_normal_active   = theme.confdir .. "/icons/title
 theme.titlebar_maximized_button_focus_active    = theme.confdir .. "/icons/titlebar/maximized_focus_active.png"
 
 local markup = lain.util.markup
+
+-- Wireless
+net_wireless = net_widgets.wireless({interface="wlp1s0", font=theme.font})
 
 -- Battery
 local baticon = wibox.widget.imagebox(theme.widget_batt)
@@ -278,6 +282,7 @@ function theme.at_screen_connect(s)
             netdowninfo,
             netupicon,
             netupinfo.widget,
+            net_wireless,
             volicon,
             theme.volume.widget,
             memicon,

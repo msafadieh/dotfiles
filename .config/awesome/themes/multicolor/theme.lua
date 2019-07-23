@@ -97,7 +97,6 @@ local markup = lain.util.markup
 
 -- Ethernet
 net_wired = net_widgets.indicator({
-  interfaces = {"enp3s0f3u4u2"},
   timeout    = 5,
   font       = theme.font
 })

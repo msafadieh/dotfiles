@@ -95,6 +95,13 @@ theme.titlebar_maximized_button_focus_active    = theme.confdir .. "/icons/title
 
 local markup = lain.util.markup
 
+-- Ethernet
+net_wired = net_widgets.indicator({
+  interfaces = {"enp3s0f3u4u2"},
+  timeout    = 5,
+  font       = theme.font
+})
+
 -- Wireless
 net_wireless = net_widgets.wireless({interface="wlp1s0", font=theme.font})
 
@@ -282,6 +289,7 @@ function theme.at_screen_connect(s)
             netdowninfo,
             netupicon,
             netupinfo.widget,
+            net_wired,
             net_wireless,
             volicon,
             theme.volume.widget,

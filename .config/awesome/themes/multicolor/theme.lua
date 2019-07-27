@@ -98,7 +98,8 @@ local markup = lain.util.markup
 -- Ethernet
 net_wired = net_widgets.indicator({
   timeout    = 5,
-  font       = theme.font
+  font       = theme.font,
+  hidedisconnected = true
 })
 
 -- Wireless

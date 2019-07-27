@@ -12,19 +12,22 @@ local function worker(args)
   local wired = wibox.widget.imagebox()
   local wired_na = wibox.widget.imagebox()
   -- Settings
-  local interfaces_matches = string.gmatch(io.popen("ip addr show"):read("*a"), "enp[a-z0-9]+")
-  local interfaces = {}
-  
-  for i in interfaces_matches do
-    table.insert(interfaces, i)
-  end
-
   local ICON_DIR = awful.util.getdir("config").."/"..module_path.."/net_widgets/icons/"
   local timeout = args.timeout or 5
   local font = args.font or beautiful.font
   local onclick = args.onclick
   local hidedisconnected = args.hidedisconnected
   local popup_position = args.popup_position or naughty.config.defaults.position
+  local interfaces = {}
+
+  local function refresh_interfaces()
+    interfaces = {}
+    local interfaces_matches = string.gmatch(io.popen("ip addr show"):read("*a"), "enp[a-z0-9]+")
+
+    for i in interfaces_matches do
+      table.insert(interfaces, i)
+    end
+  end
 
   local connected = false
   local function text_grabber()
@@ -63,6 +66,7 @@ local function worker(args)
   wired_na:set_image(nil)
   widget:set_widget(wired_na)
   local function net_update()
+    refresh_interfaces()
     connected = false
     for _, i in pairs(interfaces) do
       awful.spawn.easy_async("bash -c \"ip link show "..i.." | awk 'NR==1 {printf \\\"%s\\\", $9}'\"", function(stdout, stderr, reason, exit_code)

@@ -11,7 +11,7 @@ ZSH_THEME="lambda-gitster"
 HYPHEN_INSENSITIVE="true"
 DISABLE_UPDATE_PROMPT="true"
 DISABLE_AUTO_TITLE="true"
-plugins=(git python zsh-syntax-highlighting)
+plugins=(git python systemd zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # ALIASES
@@ -22,6 +22,7 @@ alias eduroam='sh ~/.scripts/setup_eduroam.sh'
 alias gpg-pass='sh ~/.scripts/get-gpg.sh' 
 alias check-bat='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 alias vpn-off='sudo systemctl stop wg-quick@mullvad-us13 restartwg'
+alias sudo='sudo -E'
 
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
   exec startx -- vt1 &> /dev/null

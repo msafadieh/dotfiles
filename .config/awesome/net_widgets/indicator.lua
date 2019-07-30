@@ -77,7 +77,9 @@ local function worker(args)
         end
         if connected then
             widget:set_widget(wired)
+            awful.util.spawn_with_shell("nmcli | grep -P \"^wlp[a-z0-9]+: unavailable\" || nmcli radio wifi off")
         else
+            awful.util.spawn_with_shell("nmcli | grep -P \"^wlp[a-z0-9]+: unavailable\" && nmcli radio wifi on")
             if not hidedisconnected then
                 widget:set_widget(wired_na)
             else

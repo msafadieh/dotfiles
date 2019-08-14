@@ -21,7 +21,7 @@ alias vps='ssh -p 961 mhmd@msafadieh.com'
 alias eduroam='sh ~/.scripts/setup_eduroam.sh'
 alias gpg-pass='sh ~/.scripts/get-gpg.sh' 
 alias check-bat='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
-alias vpn-off='sudo systemctl stop wg-quick@mullvad-us13 restartwg'
+alias vpn-off='~/.scripts/turn-off-vpn.sh'
 alias sudo='sudo -E'
 
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then

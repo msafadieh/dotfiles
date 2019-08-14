@@ -3,7 +3,7 @@
     "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": true,
     "workbench.iconTheme": "ayu",
-    "workbench.colorTheme": "Ayu Mirage",
+    "workbench.colorTheme": "Dobri Next -A08- Midnight",
     "window.menuBarVisibility": "toggle",
     "window.zoomLevel": 0,
     "files.autoSave": "afterDelay",
@@ -23,5 +23,7 @@
     "workbench.enableExperiments": false,
     "workbench.settings.enableNaturalLanguageSearch": false,
     "git.autofetch": true,
-    "typescript.updateImportsOnFileMove.enabled": "always"
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "python.pythonPath": "/usr/bin/python",
+    "python.dataScience.sendSelectionToInteractiveWindow": true
 }

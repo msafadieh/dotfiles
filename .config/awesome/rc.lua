@@ -54,7 +54,7 @@ local scrlocker    = "i3lock -c 000000"
 local chatapp      = "riot-desktop"
 
 awful.util.terminal = terminal
-awful.util.tagnames = {"I", "II", "III", "VI"}
+awful.util.tagnames = {"I", "II", "III", "VI", "V", "VI"}
 awful.layout.layouts = {
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,

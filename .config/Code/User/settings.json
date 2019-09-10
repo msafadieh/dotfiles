@@ -25,5 +25,9 @@
     "git.autofetch": true,
     "typescript.updateImportsOnFileMove.enabled": "always",
     "python.pythonPath": "/usr/bin/python",
-    "python.dataScience.sendSelectionToInteractiveWindow": true
+    "python.dataScience.sendSelectionToInteractiveWindow": true,
+    "terminal.integrated.rendererType": "dom",
+    "editor.quickSuggestions": {
+        "strings": true
+    }
 }

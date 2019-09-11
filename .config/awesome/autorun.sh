@@ -6,6 +6,8 @@ mpd
 
 numlockx
 
-killall xautolock && xautolock -time 15 -locker "systemctl suspend" -detectsleep -corners "0-00" -notify 30 -notifier "notify-send -t 30000 -u critical 'Going to sleep in 30 seconds'" &
+killall xautolock
+xautolock -time 15 -locker "systemctl suspend" -detectsleep -corners "0-00" -notify 30 -notifier "notify-send -t 30000 -u critical 'Going to sleep in 30 seconds'" &
 
-killall xflux && xflux -z 12604
+killall xflux
+xflux -z 12604

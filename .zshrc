@@ -4,6 +4,9 @@ export ZSH="/home/mhmd/.oh-my-zsh"
 export EDITOR='vim'
 export SYSTEMD_EDITOR='vim'
 export GPG_TTY=$(tty)
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
+gpg-connect-agent updatestartuptty /bye > /dev/null
 export LC_ALL=en_US.UTF-8
 
 # OH-MY-ZSH CONFIG
@@ -27,4 +30,3 @@ alias sudo='sudo -E'
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
   exec startx -- vt1 &> /dev/null
 fi
-

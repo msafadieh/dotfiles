@@ -1,1 +1,0 @@
-sudo efibootmgr --disk /dev/nvme0n1 --part 1 --create --label 'Arch Linux' --loader /vmlinuz-linux --unicode 'root=/dev/nvme0n1p2 initrd=md-ucode.img initrd=\initramfs-linux.img rw quiet nvme_core.default_ps_max_latency_us=5500 vga=current acpi_backlight=vendor amd_iommu=off' --verbose

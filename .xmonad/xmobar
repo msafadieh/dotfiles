@@ -1,0 +1,24 @@
+Config { font = "xft:terminus:size=9.5:antialias=true" 
+       , bgColor = "#4c2462"
+       , fgColor = "#f4f4f4"
+       , position = Top
+   -- general behavior
+   , lowerOnStart =     True    -- send to bottom of window stack on start
+   , hideOnStart =      False   -- start with window unmapped (hidden)
+   , allDesktops =      True    -- show on all desktops
+   , overrideRedirect = True    -- set the Override Redirect flag (Xlib)
+   , pickBroadest =     False   -- choose widest display (multi-monitor)
+   , persistent =       True    -- enable/disable hiding (True = disabled)
+       , commands = [ Run Weather "KPOU" [ "--template", "<skyCondition> @ <tempC>°C"] 36000
+                    , Run Cpu ["-t", "C <total>%", "-L","3","-H","50","--high","red"] 10
+                    , Run Memory ["-t","M <used>M"] 10
+                    , Run Date "%A %_d %B λ %H:%M:%S" "date" 10
+                    , Run StdinReader
+                    , Run Kbd [("us", "US"), ("ara(qwerty)", "<fc=green>AR</fc>")]
+                    , Run Battery ["-t", "<acstatus>", "--", "-i", "full", "-O", "charging", "-o", "<left>% (<timeleft>)"] 1
+                    , Run DynNetwork [ "--template" , "↑ <tx>kB/s ↓ <rx>kB/s"] 5
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = " %StdinReader% }{ %dynnetwork% | %battery% | %cpu% | %memory% | %KPOU% | %date% | %kbd% "
+       }

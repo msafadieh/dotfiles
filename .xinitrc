@@ -1,5 +1,5 @@
 #! /bin/sh
 
-start-pulseaudio-x11
 xrandr | grep -i "HDMI-A-0 connected" > /dev/null && xrandr --output eDP --off
-exec /usr/bin/awesome >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr
+mkdir -p .cache/xmonad
+exec xmonad >> ~/.cache/xmonad/stdout 2>> ~/.cache/xmonad/stderr

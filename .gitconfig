@@ -1,0 +1,6 @@
+[user]
+	email = me@msafadieh.com
+	name = Mohamad Safadieh
+	signingkey = 46ADA27B4FB740ED5744BFAB66F54D5A63635432
+[commit]
+	gpgSign = true

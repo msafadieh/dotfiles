@@ -1,6 +1,6 @@
 import XMonad hiding ( (|||) )
 import XMonad.Actions.CycleWS
-import XMonad.Util.EZConfig(additionalKeys)
+import XMonad.Util.EZConfig(additionalKeys, additionalKeysP)
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
@@ -22,6 +22,7 @@ chat = "riot-desktop"
 main = do
     setRandomWallpaper ["$HOME/.wallpapers"]
     xmproc <- spawnPipe "xmobar $HOME/.xmonad/xmobar"
+    rshift <- spawnPipe "redshift -l 41.69:-73.89"
     xmonad $ defaultConfig
         { manageHook = manageDocks <+> (isFullscreen --> doFullFloat) <+> manageHook defaultConfig 
         , layoutHook = smartBorders myLayout 
@@ -41,6 +42,7 @@ main = do
         , focusedBorderColor = "#9400D3"
         , borderWidth = 2
         } `additionalKeys` myKeys
+          `additionalKeysP` myKeysP
 
 
 modKey = mod4Mask
@@ -56,6 +58,15 @@ myKeys = [
   , ((modKey, xK_Right), nextWS)
   , ((modKey, xK_Left ), prevWS)
   , ((modKey, xK_f ), sendMessage $ JumpToLayout "Full" )
+ ]
+
+myKeysP = [
+    ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ +1.5%")
+  , ("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@  -1.5%") 
+  , ("<XF86AudioMute>", spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle") 
+
+  , ("<XF86MonBrightnessDown>", spawn "light -U 10")
+  , ("<XF86MonBrightnessUp>", spawn "light -A 10")
  ]
 
 myLayout = (avoidStruts $

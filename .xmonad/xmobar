@@ -10,7 +10,7 @@ Config { font = "xft:terminus:size=9.5:antialias=true"
    , pickBroadest =     False   -- choose widest display (multi-monitor)
    , persistent =       True    -- enable/disable hiding (True = disabled)
        , commands = [ Run Weather "KPOU" [ "--template", "<skyCondition> @ <tempC>°C"] 36000
-                    , Run Volume "default" "Master" ["--template", "V <volume>% <status>", "--","-O", ""] 1
+                    , Run Volume "default" "Master" ["--template", "V <volume>%<status>", "--","--on", "", "--off", "<fc=red> [off]</fc>"] 1
                     , Run Cpu ["-t", "C <total>%", "-L","3","-H","50","--high","red"] 10
                     , Run Memory ["-t","M <used>M"] 10
                     , Run Date "%A %_d %B λ %H:%M:%S" "date" 10

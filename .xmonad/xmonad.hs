@@ -22,7 +22,7 @@ chat = "riot-desktop"
 main = do
     setRandomWallpaper ["$HOME/.wallpapers"]
     xmproc <- spawnPipe "xmobar $HOME/.xmonad/xmobar"
-    rshift <- spawnPipe "redshift -l 41.69:-73.89"
+    rshift <- spawnPipe "pidof -x redshift || redshift -l 41.69:-73.89"
     xmonad $ defaultConfig
         { manageHook = manageDocks <+> (isFullscreen --> doFullFloat) <+> manageHook defaultConfig 
         , layoutHook = smartBorders myLayout 

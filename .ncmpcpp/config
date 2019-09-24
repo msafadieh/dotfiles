@@ -20,12 +20,10 @@ ignore_leading_the = "yes"
 song_columns_list_format = "(10)[blue]{l} (30)[green]{a} (30)[magenta]{b} (50)[yellow]{t}"  
 colors_enabled = "yes"  
 main_window_color = "white"  
-main_window_highlight_color =  "blue"
 header_window_color = "cyan"  
 volume_color = "red"  
 progressbar_color = "cyan"  
 statusbar_color = "white"  
-active_column_color = "cyan"  
 active_window_border = "blue"
 
 alternative_header_first_line_format = "$0$aqqu$/a {$7%a - $9}{$5%t$9}|{$8%f$9} $0$atqq$/a$9"
@@ -40,8 +38,7 @@ default_place_to_search_in = "database"
 visualizer_fifo_path = "/tmp/mpd.fifo"
 visualizer_output_name = "my_fifo"
 visualizer_sync_interval = "12"
-#visualizer_type = "wave" (spectrum/wave)
-visualizer_type = "spectrum" (spectrum/wave)
+visualizer_type = "wave" (spectrum/wave)
 visualizer_in_stereo = "yes"
 visualizer_look = "+|"
 

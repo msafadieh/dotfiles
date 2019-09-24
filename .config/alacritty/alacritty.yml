@@ -107,7 +107,7 @@ tabspaces: 4
 font:
   # Normal (roman) font face
   normal: 
-    family: Iosevka Term
+    family: Iosevka 
     # Font family
     #
     # Default:

@@ -36,10 +36,10 @@
     }
 
     audio_output {
-    type           "fifo"
-    name           "FIFO"
-    path           "/tmp/mpd.fifo"
-    format         "44100:16:2"
+        type           "fifo"
+        name           "FIFO"
+        path           "/tmp/mpd.fifo"
+        format         "44100:16:2"
     }
     '';
 
@@ -54,33 +54,31 @@
           enable = true;
           enableContribAndExtras = true;
           extraPackages = haskellPackages: [
-                  haskellPackages.xmonad-contrib
-                  haskellPackages.xmonad-extras
-                  haskellPackages.xmonad
-                  haskellPackages.roman-numerals
-                  haskellPackages.xmonad-wallpaper
+                haskellPackages.libmpd
+                haskellPackages.xmonad-contrib
+                haskellPackages.xmonad-extras
+                haskellPackages.xmonad
+                haskellPackages.roman-numerals
+                haskellPackages.xmonad-wallpaper
               ];
-      };
-      xautolock = {
-          enable = true;
-          time = 15;
-          locker = "${pkgs.systemd}/bin/systemctl suspend";
-          extraOptions = [ "-detectsleep" "-corners 0-00" ];
-      };
+    };
+    xautolock = {
+        enable = true;
+        time = 15;
+        locker = "${pkgs.systemd}/bin/systemctl suspend";
+        extraOptions = [ "-detectsleep" "-corners 0-00" ];
+    };
 
-      # disabled middle click to I dont press it accidentally
-      libinput = {
-          enable = true;
-          buttonMapping = "1 1 3 4 5 6 7 8 9 10";
-      };
-      layout = "us,ara";
-      xkbOptions = "grp:alt_space_toggle";
-      xkbModel = "pc105";
-      xkbVariant = ",qwerty";
+    # disabled middle click to I dont press it accidentally
+    libinput = {
+        enable = true;
+        buttonMapping = "1 1 3 4 5 6 7 8 9 10";
+    };
+    layout = "us,ara";
+    xkbOptions = "grp:alt_space_toggle";
+    xkbModel = "pc105";
+    xkbVariant = ",qwerty";
   };
 
 
-  services.compton = {
-      enable = true;
-  };
 }

@@ -4,10 +4,16 @@
   imports =
     [ ./hardware-configuration.nix ./services.nix ./yubikey-gpg.nix ./zsh.nix ];
 
+  hardware.cpu.amd.updateMicrocode = true;
   boot = {
     extraModulePackages = [ config.boot.kernelPackages.wireguard ];
     loader = {
-      systemd-boot.enable = true;
+      systemd-boot = {
+        configurationLimit = 5;
+        enable = true;
+        editor = false;
+      };
+      timeout = 0;
       efi.canTouchEfiVariables = true;
     };
 
@@ -15,17 +21,21 @@
     kernelPackages = pkgs.linuxPackages_latest;
   };
 
-  networking.hostName = "ataar";
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "ataar";
+    networkmanager = {
+      enable = true;
+    };
+  };
 
   time.timeZone = "America/New_York";
-    
-  nixpkgs.config.allowUnfree = true; 
+  nixpkgs.config.allowUnfree = true;    
   environment.systemPackages = with pkgs; [
     alacritty
-#    linuxPackages.amdgpu-pro
-    compton
+    brave
     dmenu
+    docker
+    docker-compose
     feh
     firefox
     git
@@ -48,15 +58,18 @@
     redshift
     riot-desktop
     scrot
+    slack
+    stalonetray
     unzip
     vim
     vscodium
     wireguard
     xautolock
-    xorg.xf86videoamdgpu
     xmobar
+    xorg.xf86videoamdgpu
     zsh
     zsh-syntax-highlighting
+    zoom-us
   ];
 
   fonts.fonts = with pkgs; [
@@ -73,11 +86,15 @@
   };
 
   sound.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    package = pkgs.bluezFull;
+  };
   hardware.pulseaudio = {
     enable = true;
     support32Bit = true;
+    package = pkgs.pulseaudioFull;
   };
-  nixpkgs.config.pulseaudio = true;
   hardware.acpilight.enable = true;
 
   users.users = {
@@ -85,18 +102,18 @@
           isNormalUser = true;
           home = "/home/mhmd";
           description = "Mohamad Safadieh";
-          extraGroups = ["wheel" "audio" "video" "networkmanager"];
+          extraGroups = ["wheel" "audio" "video" "networkmanager" "docker"];
           shell = pkgs.zsh;
           initialPassword = "1234";
           createHome = true;
       };
   };
 
-  security.sudo.extraRules = [
-    { commands = [ { command = "ALL"; options = [ "NOPASSWD" ]; } ]; groups = [ "wheel" ]; }
-  ];
-
+  security.sudo.wheelNeedsPassword = false;
+  
+  virtualisation.docker.enable = true;
   system.stateVersion = "19.09";
+
 
 }
 

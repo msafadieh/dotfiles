@@ -34,15 +34,7 @@ main = do
           , handleEventHook  = handleEventHook def 
                                 <+> docksEventHook 
                                 <+> fullscreenEventHook
-          , logHook = dynamicLogWithPP xmobarPP
-              { ppOutput = hPutStrLn xmproc
-              , ppCurrent = xmobarColor "yellow" "" . romanWorkspace
-              , ppHidden = romanWorkspace
-              , ppHiddenNoWindows = romanWorkspace
-              , ppUrgent = xmobarColor "red" "" . romanWorkspace
-              , ppLayout = \x -> []
-              , ppTitle = \x -> []
-              }
+          , logHook = myLogHook xmproc
           , modMask = modKey
           , terminal = "alacritty"
           , normalBorderColor = "#dda0dd"
@@ -52,6 +44,17 @@ main = do
           } `additionalKeys` myKeys
             `additionalKeysP` myKeysP 
 
+
+myLogHook xmproc = dynamicLogWithPP xmobarPP
+                    { ppOutput = hPutStrLn xmproc
+                    , ppCurrent = xmobarColor "yellow" "" . romanWorkspace
+                    , ppHidden = romanWorkspace
+                    , ppHiddenNoWindows = romanWorkspace
+                    , ppUrgent = xmobarColor "red" "" . romanWorkspace
+                    , ppLayout = \x -> []
+                    , ppTitle = \x -> []
+                    }
+
 myManageHook = composeAll
   [ manageDocks,
     isFullscreen --> doFullFloat,
@@ -60,7 +63,7 @@ myManageHook = composeAll
   ] 
 
 myKeys = 
-  [ ((modKey, xK_p), spawn "mkdir $HOME/screenshots && scrot $HOME/screenshots/$(date +%Y%m%d%H%M%S).png")
+  [ ((modKey, xK_p), spawn "scrot $HOME/screenshots/$(date +%Y%m%d%H%M%S).png")
   , ((modKey, xK_r), spawn "dmenu_run -fn terminus-9.5 -nb '#4c2462' -nf '#f4f4f4' -sf '#f4f4f4' -sb '#965eb5'")
   , ((modKey, xK_Return), spawn "alacritty")
   , ((modKey, xK_w), spawn browser)

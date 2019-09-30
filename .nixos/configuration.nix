@@ -9,7 +9,7 @@
     extraModulePackages = [ config.boot.kernelPackages.wireguard ];
     loader = {
       systemd-boot = {
-        configurationLimit = 5;
+        configurationLimit = 2;
         enable = true;
         editor = false;
       };
@@ -36,6 +36,7 @@
     dmenu
     docker
     docker-compose
+    electrum
     feh
     firefox
     git
@@ -44,22 +45,29 @@
     gnupg
     i3lock
     inkscape
+    libffi
+    libreoffice
     light
     mpd
+    mpv
+    monero-gui
     mullvad-vpn
     mupdf
     neofetch
     ncmpcpp
     networkmanager
+    nicotine-plus
     pavucontrol
     pinentry_gnome
     python3Full
-    python37Packages.ipython 
+    python37Packages.ipython
+    qbittorrent 
     redshift
     riot-desktop
     scrot
     slack
     stalonetray
+    tdesktop
     unzip
     vim
     vscodium
@@ -68,7 +76,6 @@
     xmobar
     xorg.xf86videoamdgpu
     zsh
-    zsh-syntax-highlighting
     zoom-us
   ];
 

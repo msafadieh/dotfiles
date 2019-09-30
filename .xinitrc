@@ -1,5 +1,6 @@
 #! /bin/sh
 
-xrandr | grep -i "HDMI-1 connected" > /dev/null && xrandr --output eDP-1 --off
+mpd
+xrandr | grep -i "HDMI-A-0 connected" > /dev/null && xrandr --output eDP --off
 mkdir -p .cache/xmonad
 exec xmonad >> ~/.cache/xmonad/stdout 2>> ~/.cache/xmonad/stderr

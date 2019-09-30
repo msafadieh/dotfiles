@@ -1,4 +1,4 @@
-Config { font = "xft:terminus:size=9.5:antialias=true" 
+Config { font = "xft:Terminus (TTF):size=9:antialias=true" 
        , bgColor = "#4c2462"
        , fgColor = "#f4f4f4"
        , position = Top

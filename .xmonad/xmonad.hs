@@ -25,6 +25,9 @@ chat = "riot-desktop"
 modKey = mod4Mask
 
 main = do
+        xinput <- spawnPipe "xinput set-button-map 'ELAN1300:00 04F3:3087 Touchpad' 1 1 3 4 5 6 7 8 9 10"
+        xflux <- spawnPipe "killall xflux || true && xflux -z 12604"
+        xautolock <- spawnPipe "xautolock -time 15 -locker 'systemctl suspend' -detectsleep -corners '0-00'"
         xmproc <- spawnPipe "xmobar $HOME/.xmonad/xmobar"
         setRandomWallpaper ["$HOME/.wallpapers"]
         rshift <- spawnPipe "pidof -x redshift || redshift -l 41.69:-73.89"
@@ -64,7 +67,7 @@ myManageHook = composeAll
 
 myKeys = 
   [ ((modKey, xK_p), spawn "scrot $HOME/screenshots/$(date +%Y%m%d%H%M%S).png")
-  , ((modKey, xK_r), spawn "dmenu_run -fn terminus-9.5 -nb '#4c2462' -nf '#f4f4f4' -sf '#f4f4f4' -sb '#965eb5'")
+  , ((modKey, xK_r), spawn "dmenu_run -fn 'Terminus (TTF)-9' -nb '#4c2462' -nf '#f4f4f4' -sf '#f4f4f4' -sb '#965eb5'")
   , ((modKey, xK_Return), spawn "alacritty")
   , ((modKey, xK_w), spawn browser)
   , ((modKey, xK_a), spawn editor)

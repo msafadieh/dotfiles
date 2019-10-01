@@ -1,4 +1,4 @@
-Config { font = "xft:Terminus (TTF):size=9:antialias=true" 
+Config { font = "xft:Terminus (TTF):size=10.5:antialias=true" 
        , bgColor = "#4c2462"
        , fgColor = "#f4f4f4"
        , position = Top
@@ -22,5 +22,5 @@ Config { font = "xft:Terminus (TTF):size=9:antialias=true"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " %StdinReader% }{  %mpd%  %dynnetwork%  %default:Master%  %battery%  %cpu%  %memory%  %KPOU%  %date%  %kbd% "
+       , template = "%StdinReader% }{  %mpd%  %dynnetwork%  %default:Master%  %battery%  %cpu%  %memory%  %KPOU%  %date%  %kbd% "
        }

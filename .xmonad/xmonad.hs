@@ -25,8 +25,10 @@ chat = "riot-desktop"
 modKey = mod4Mask
 
 main = do
+        nmapplet <- spawnPipe "nm-applet"
+        stalonetray <- spawnPipe "stalonetray"
         xinput <- spawnPipe "xinput set-button-map 'ELAN1300:00 04F3:3087 Touchpad' 1 1 3 4 5 6 7 8 9 10"
-        xflux <- spawnPipe "killall xflux || true && xflux -z 12604"
+        xflux <- spawnPipe "pidof xflux || xflux -z 12604"
         xautolock <- spawnPipe "xautolock -time 15 -locker 'systemctl suspend' -detectsleep -corners '0-00'"
         xmproc <- spawnPipe "xmobar $HOME/.xmonad/xmobar"
         setRandomWallpaper ["$HOME/.wallpapers"]
@@ -42,7 +44,7 @@ main = do
           , terminal = "alacritty"
           , normalBorderColor = "#dda0dd"
           , focusedBorderColor = "#9400D3"
-          , borderWidth = 2
+          , borderWidth = 5
           , startupHook = addEWMHFullscreen
           } `additionalKeys` myKeys
             `additionalKeysP` myKeysP 
@@ -50,12 +52,13 @@ main = do
 
 myLogHook xmproc = dynamicLogWithPP xmobarPP
                     { ppOutput = hPutStrLn xmproc
-                    , ppCurrent = xmobarColor "yellow" "" . romanWorkspace
-                    , ppHidden = romanWorkspace
-                    , ppHiddenNoWindows = romanWorkspace
-                    , ppUrgent = xmobarColor "red" "" . romanWorkspace
+                    , ppCurrent = xmobarColor "yellow" "#8851a5" . workspaceFormat
+                    , ppHidden = workspaceFormat
+                    , ppHiddenNoWindows = workspaceFormat
+                    , ppUrgent = xmobarColor "red" "" . workspaceFormat
                     , ppLayout = \x -> []
                     , ppTitle = \x -> []
+                    , ppWsSep = []
                     }
 
 myManageHook = composeAll
@@ -67,7 +70,7 @@ myManageHook = composeAll
 
 myKeys = 
   [ ((modKey, xK_p), spawn "scrot $HOME/screenshots/$(date +%Y%m%d%H%M%S).png")
-  , ((modKey, xK_r), spawn "dmenu_run -fn 'Terminus (TTF)-9' -nb '#4c2462' -nf '#f4f4f4' -sf '#f4f4f4' -sb '#965eb5'")
+  , ((modKey, xK_r), spawn "dmenu_run -fn 'Terminus (TTF)-10.5' -nb '#4c2462' -nf '#f4f4f4' -sf '#f4f4f4' -sb '#965eb5'")
   , ((modKey, xK_Return), spawn "alacritty")
   , ((modKey, xK_w), spawn browser)
   , ((modKey, xK_a), spawn editor)
@@ -98,7 +101,13 @@ myLayout = avoidStruts
             tiled = spacing space $ ResizableTall nmaster delta ratio []
             twopane = spacing space $ TwoPane delta ratio
 
+workspaceFormat :: WorkspaceId -> String
+workspaceFormat w = spacePadding $ romanWorkspace w
+
+spacePadding :: String -> String
+spacePadding w = " " ++ w ++ " "
 --- Roman numerals for workspace tags
+romanWorkspace :: WorkspaceId -> String
 romanWorkspace w = toRoman (read w :: Int)
 
 --- Adds full screen support to firefox

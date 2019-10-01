@@ -1,0 +1,13 @@
+decorations none
+transparent false
+background "#4c2462"
+geometry 1x1-960+0
+max_geometry 5x1-960-0
+kludges force_icons_size
+grow_gravity NE
+icon_gravity NE
+icon_size 18
+sticky true
+window_type dock
+window_layer bottom
+skip_taskbar true

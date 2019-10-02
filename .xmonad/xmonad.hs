@@ -33,7 +33,6 @@ main = do
         xautolock <- spawnPipe "xautolock -time 15 -locker 'systemctl suspend' -detectsleep -corners '0-00'"
         xmproc <- spawnPipe "xmobar $HOME/.xmonad/xmobar"
         setRandomWallpaper ["$HOME/.wallpapers"]
-        rshift <- spawnPipe "pidof -x redshift || redshift -l 41.69:-73.89"
         xmonad $ ewmh $ def
           { manageHook = myManageHook
           , layoutHook = smartBorders myLayout 

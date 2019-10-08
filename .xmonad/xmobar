@@ -1,26 +1,25 @@
-Config { font = "xft:Terminus (TTF):size=10.5:antialias=true" 
+Config { font = "xft:Fira Code:size=10:antialias=true" 
        , bgColor = "#4c2462"
        , fgColor = "#f4f4f4"
        , position = Top
-   -- general behavior
-   , lowerOnStart =     True    -- send to bottom of window stack on start
-   , hideOnStart =      False   -- start with window unmapped (hidden)
-   , allDesktops =      True    -- show on all desktops
-   , overrideRedirect = True    -- set the Override Redirect flag (Xlib)
-   , pickBroadest =     False   -- choose widest display (multi-monitor)
-   , persistent =       True    -- enable/disable hiding (True = disabled)
-       , commands = [ Run Weather "KPOU" [ "--template", "<fc=lightpink><skyCondition> @ <tempC>°C</fc>"] 36000
+       , lowerOnStart =     True    -- send to bottom of window stack on start
+       , hideOnStart =      False   -- start with window unmapped (hidden)
+       , allDesktops =      True    -- show on all desktops
+       , overrideRedirect = True    -- set the Override Redirect flag (Xlib)
+       , pickBroadest =     False   -- choose widest display (multi-monitor)
+       , persistent =       True    -- enable/disable hiding (True = disabled)
+       , commands = [ Run Weather "KPOU" [ "--template", "<fc=lightpink><skyCondition> @ <tempC>°C</fc>"] 600
                     , Run Volume "default" "Master" ["--template", "<fc=#7493d2>V <status></fc>", "--", "-C", "#7493d2", "--on", "<volume>%", "--off", "[off]"] 1
                     , Run Cpu ["-t", "<fc=#e54c62>C <total>%</fc>", "-L","3","-H","50","--high","red"] 10
                     , Run Memory ["-t","<fc=yellow>M <used>M</fc>"] 10
-                    , Run Date "<fc=orange>%A %_d %B</fc> λ <fc=lightblue>%H:%M:%S</fc>" "date" 10
+                    , Run Date "<fc=orange>%A%_d %B</fc> λ <fc=lightblue>%H:%M:%S</fc>" "date" 10
                     , Run StdinReader
                     , Run Kbd [("us", "US"), ("ara(qwerty)", "<fc=green>AR</fc>")]
                     , Run Battery ["-t", "<fc=gray><acstatus></fc>", "--", "-i", "full", "-O", "charging", "-o", "<left>%"] 1
                     , Run DynNetwork [ "--template" , "<fc=#e54c62>↑ <tx>kB/s</fc> <fc=#87af5f>↓ <rx>kB/s</fc>"] 5
-                    , Run MPD [ "-t", "<statei>", "--", "-Z", "<fc=#e54c62><artist> ></fc> <title> ||", "-P", "<fc=#e54c62><artist> ></fc> <title> >>", "-S", ""] 1
+                    , Run MPD [ "-t", "<statei>", "--", "-Z", "<fc=#e54c62><artist> ></fc> <title> || ", "-P", "<fc=#e54c62><artist> ></fc> <title> >>", "-S", ""] 1
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{  %mpd%  %dynnetwork%  %default:Master%  %battery%  %cpu%  %memory%  %KPOU%  %date%  %kbd% "
+       , template = "%StdinReader% %mpd% }{  %dynnetwork%  %default:Master%  %battery%  %cpu%  %memory%  %KPOU%  %date%  %kbd% "
        }

@@ -26,6 +26,7 @@ modKey = mod4Mask
 
 main = do
         nmapplet <- spawnPipe "nm-applet"
+        bmapplet <- spawnPipe "blueman-applet"
         compton <- spawnPipe "compton"
         stalonetray <- spawnPipe "stalonetray"
         xinput <- spawnPipe "xinput set-button-map 'ELAN1300:00 04F3:3087 Touchpad' 1 1 3 4 5 6 7 8 9 10"
@@ -65,12 +66,15 @@ myManageHook = composeAll
   [ manageDocks,
     isFullscreen --> doFullFloat,
     resource=? "ncmpcpp" --> doRectFloat (RationalRect (1 % 3) (1 % 4) (1 % 3) (1 % 2)),
+    resource=? "Navigator" --> notFirefox,
     manageHook defaultConfig
   ] 
 
+notFirefox = composeOne $ [(className /=? "firefox") -?> doCenterFloat]
+
 myKeys = 
   [ ((modKey, xK_p), spawn "(mkdir $HOME/screenshots || true) && scrot $HOME/screenshots/$(date +%Y%m%d%H%M%S).png")
-  , ((modKey, xK_r), spawn "dmenu_run -fn 'Terminus (TTF)-12' -nb '#4c2462' -nf '#f4f4f4' -sf '#f4f4f4' -sb '#965eb5'")
+  , ((modKey, xK_r), spawn "dmenu_run -fn 'Fira Code-11' -nb '#4c2462' -nf '#f4f4f4' -sf '#f4f4f4' -sb '#965eb5'")
   , ((modKey, xK_Return), spawn "alacritty")
   , ((modKey, xK_w), spawn browser)
   , ((modKey, xK_a), spawn editor)
@@ -101,8 +105,7 @@ myLayout = avoidStruts
             tiled = spacing space $ ResizableTall nmaster delta ratio []
             twopane = spacing space $ TwoPane delta ratio
 
-workspaceFormat :: WorkspaceId -> String
-workspaceFormat w = spacePadding $ romanWorkspace w
+workspaceFormat = spacePadding . romanWorkspace
 
 spacePadding :: String -> String
 spacePadding w = " " ++ w ++ " "

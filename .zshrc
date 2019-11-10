@@ -25,5 +25,5 @@ alias eduroam='sh ~/.scripts/setup_eduroam.sh'
 alias vpn-off='~/.scripts/turn-off-vpn.sh'
 
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-  exec startx -- vt1 &> /dev/null
+  exec startx
 fi

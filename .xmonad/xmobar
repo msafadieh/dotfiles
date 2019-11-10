@@ -17,9 +17,9 @@ Config { font = "xft:Fira Code:size=10:antialias=true"
                     , Run Kbd [("us", "US"), ("ara(qwerty)", "<fc=green>AR</fc>")]
                     , Run Battery ["-t", "<fc=gray><acstatus></fc>", "--", "-i", "full", "-O", "charging", "-o", "<left>%"] 1
                     , Run DynNetwork [ "--template" , "<fc=#e54c62>↑ <tx>kB/s</fc> <fc=#87af5f>↓ <rx>kB/s</fc>"] 5
-                    , Run MPD [ "-t", "<statei>", "--", "-Z", "<fc=#e54c62><artist> ></fc> <title> || ", "-P", "<fc=#e54c62><artist> ></fc> <title> >>", "-S", ""] 1
+                    --, Run MPD [ "-t", "<statei>", "--", "-Z", "<fc=#e54c62><artist> ></fc> <title> || ", "-P", "<fc=#e54c62><artist> ></fc> <title> >>", "-S", ""] 1
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% %mpd% }{  %dynnetwork%  %default:Master%  %battery%  %cpu%  %memory%  %KPOU%  %date%  %kbd% "
+       , template = "%StdinReader% }{  %dynnetwork%  %default:Master%  %battery%  %cpu%  %memory%  %KPOU%  %date%  %kbd% "
        }

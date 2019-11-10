@@ -65,20 +65,19 @@ myLogHook xmproc = dynamicLogWithPP xmobarPP
 myManageHook = composeAll
   [ manageDocks,
     isFullscreen --> doFullFloat,
+    className=? "Tor Browser" --> doCenterFloat,
     resource=? "ncmpcpp" --> doRectFloat (RationalRect (1 % 3) (1 % 4) (1 % 3) (1 % 2)),
-    resource=? "Navigator" --> notFirefox,
     manageHook defaultConfig
   ] 
-
-notFirefox = composeOne $ [(className /=? "firefox") -?> doCenterFloat]
 
 myKeys = 
   [ ((modKey, xK_p), spawn "(mkdir $HOME/screenshots || true) && scrot $HOME/screenshots/$(date +%Y%m%d%H%M%S).png")
   , ((modKey, xK_r), spawn "dmenu_run -fn 'Fira Code-11' -nb '#4c2462' -nf '#f4f4f4' -sf '#f4f4f4' -sb '#965eb5'")
   , ((modKey, xK_Return), spawn "alacritty")
   , ((modKey, xK_w), spawn browser)
-  , ((modKey, xK_a), spawn editor)
   , ((modKey, xK_z), spawn chat)
+  , ((modKey, xK_a), spawn editor)
+  , ((modKey, xK_d), spawn "xautolock -toggle")
   , ((modKey, xK_Right), nextWS)
   , ((modKey, xK_Left ), prevWS)
   , ((modKey, xK_f ), sendMessage $ JumpToLayout "Full" )

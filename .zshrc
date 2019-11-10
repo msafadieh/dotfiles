@@ -20,9 +20,6 @@ source $ZSH/oh-my-zsh.sh
 # ALIASES
 alias ld-off='xrandr --output eDP --off'
 alias vassar='ssh msafadieh@mote.cs.vassar.edu'
-alias vps='ssh -p 961 mhmd@msafadieh.com'
-alias eduroam='sh ~/.scripts/setup_eduroam.sh'
-alias vpn-off='~/.scripts/turn-off-vpn.sh'
 
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
   exec startx

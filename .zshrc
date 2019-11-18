@@ -21,6 +21,7 @@ source $ZSH/oh-my-zsh.sh
 alias ld-off='xrandr --output eDP --off'
 alias vassar='ssh msafadieh@mote.cs.vassar.edu'
 
+mkdir -p ~/.cache/X11
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-  exec startx
+  exec startx >> ~/.cache/X11/stdout 2>> ~/.cache/X11/stderr
 fi

@@ -25,9 +25,10 @@ chat = "riot-desktop"
 modKey = mod4Mask
 
 main = do
+        nextcloud <- spawnPipe "nextcloud"
         nmapplet <- spawnPipe "nm-applet"
         bmapplet <- spawnPipe "blueman-applet"
-        compton <- spawnPipe "compton"
+        picom <- spawnPipe "picom"
         stalonetray <- spawnPipe "stalonetray"
         xinput <- spawnPipe "xinput set-button-map 'ELAN1300:00 04F3:3087 Touchpad' 1 1 3 4 5 6 7 8 9 10"
         xflux <- spawnPipe "pidof xflux || xflux -z 12604"

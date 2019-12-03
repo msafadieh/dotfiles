@@ -1,5 +1,5 @@
 # VARIABLES
-export PATH=/usr/bin:~/.local/bin:~/.cabal/bin
+export PATH=~/.local/bin:~/.cabal/bin:$PATH
 export ZSH="/home/mhmd/.oh-my-zsh"
 export EDITOR='vim'
 export SYSTEMD_EDITOR='vim'

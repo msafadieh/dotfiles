@@ -1,0 +1,18 @@
+#! /bin/sh
+# a useful dmenu script to manage my display settings using xrandr
+
+modes="laptop\nHDMI\ndual"
+
+if [ $1 ]; then
+    mode=$1
+else
+    mode=$(echo -e $modes | dmenu -fn 'Fira Code-11' -nb '#4c2462' -nf '#f4f4f4' -sf '#f4f4f4' -sb '#965eb5')
+fi
+
+if [ $mode = "laptop" ]; then
+    xrandr --output eDP --mode 1920x1080 --output HDMI-A-0 --off
+elif [ $mode = "HDMI" ]; then
+    xrandr --output HDMI-A-0 --mode 1920x1080 --output eDP --off
+elif [ $mode = "dual" ]; then
+    xrandr --output eDP --mode 1920x1080 --pos 0x0 --output HDMI-A-0 --mode 1920x1080 --pos 1920x0
+fi

@@ -22,6 +22,7 @@ import XMonad.Wallpaper
 browser = "firefox"
 editor = "codium"
 chat = "riot-desktop"
+screenshot = "screenshot"
 modKey = mod4Mask
 
 main = do
@@ -71,8 +72,8 @@ myManageHook = composeAll
   ] 
 
 myKeys = 
-  [ ((0, xK_Print), spawn "(mkdir $HOME/screenshots || true) && scrot $HOME/screenshots/$(date +%Y%m%d%H%M%S).png")
-  , ((modKey, xK_p), spawn "(mkdir $HOME/screenshots || true) && scrot $HOME/screenshots/$(date +%Y%m%d%H%M%S).png")
+  [ ((0, xK_Print), spawn screenshot)
+  , ((modKey, xK_p), spawn screenshot)
   , ((modKey, xK_r), spawn "dmenu_run -fn 'Fira Code-11' -nb '#4c2462' -nf '#f4f4f4' -sf '#f4f4f4' -sb '#965eb5'")
   , ((modKey, xK_Return), spawn "alacritty")
   , ((modKey, xK_w), spawn browser)

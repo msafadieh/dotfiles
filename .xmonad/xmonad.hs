@@ -29,7 +29,6 @@ main = do
         nextcloud <- spawnPipe "nextcloud"
         nmapplet <- spawnPipe "nm-applet"
         bmapplet <- spawnPipe "blueman-applet"
-        picom <- spawnPipe "picom"
         stalonetray <- spawnPipe "stalonetray"
         xflux <- spawnPipe "pidof xflux || xflux -z 12604"
         xautolock <- spawnPipe "xautolock -time 15 -locker 'systemctl suspend' -detectsleep -corners '0-00'"

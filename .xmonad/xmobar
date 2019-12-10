@@ -12,7 +12,7 @@ Config { font = "xft:Fira Code:size=10:antialias=true"
                     , Run Volume "default" "Master" ["--template", "<fc=#7493d2>V <status></fc>", "--", "-C", "#7493d2", "--on", "<volume>%", "--off", "[off]"] 1
                     , Run Cpu ["-t", "<fc=#e54c62>C <total>%</fc>", "-L","3","-H","50","--high","red"] 10
                     , Run Memory ["-t","<fc=yellow>M <used>M</fc>"] 10
-                    , Run Date "<fc=orange>%A %d %B</fc> λ <fc=lightblue>%H:%M:%S</fc>" "date" 10
+                    , Run Date "<fc=orange>%A %d %B</fc> λ <fc=lightblue>%H:%M</fc>" "date" 10
                     , Run StdinReader
                     , Run Kbd [("us", "US"), ("ara(qwerty)", "<fc=green>AR</fc>")]
                     , Run Battery ["-t", "<fc=gray><acstatus></fc>", "--", "-i", "full", "-O", "charging", "-o", "<left>%"] 1

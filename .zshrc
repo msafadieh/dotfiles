@@ -19,7 +19,15 @@ source $ZSH/oh-my-zsh.sh
 
 # ALIASES
 alias ld-off='xrandr --output eDP --off'
-alias vassar='ssh msafadieh@mote.cs.vassar.edu'
+alias vassar='ssh -p 443 msafadieh@mote.cs.vassar.edu'
+
+# vi key bindings
+bindkey -v
+export KEYTIMEOUT=1
+
+# enable line search on arrow up/down
+bindkey -v "^[OA" up-line-or-beginning-search
+bindkey -v "^[OB" down-line-or-beginning-search
 
 mkdir -p ~/.cache/X11
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then

@@ -3,10 +3,15 @@ export PATH=~/.local/bin:~/.cabal/bin:$PATH
 export ZSH="/home/mhmd/.oh-my-zsh"
 export EDITOR='vim'
 export SYSTEMD_EDITOR='vim'
+
+# gpg stuff
+export GNUPGHOME=$HOME/.config/gnupg
 export GPG_TTY=$(tty)
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
 gpg-connect-agent updatestartuptty /bye > /dev/null
+
+# locale
 export LC_ALL=en_US.UTF-8
 
 # OH-MY-ZSH CONFIG

@@ -1,6 +1,6 @@
 #! /bin/sh
 
-feh --bg-scale ~/.wallpaper &
+feh --bg-scale ./wallpaper &
 
 pidof nextcloud || nextcloud &
 blueman-applet &

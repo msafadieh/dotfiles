@@ -1,0 +1,7 @@
+#! /bin/sh
+
+if [ $(grep "youtube.com" <<< $1) ]; then
+    mpv --no-terminal -- $1 &
+else
+    lynx $1 
+fi

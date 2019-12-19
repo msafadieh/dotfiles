@@ -68,8 +68,10 @@ static const char *privbrowsercmd[] = { "firefox", "--private-window", NULL };
 static const char *volupcmd[] = {"pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
 static const char *voldowncmd[] = {"pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
 static const char *volmutecmd[] = {"pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
-static const char *brupcmd[] = { "xbacklight", "-inc", "10", NULL };
-static const char *brdowncmd[] = { "xbacklight", "-dec", "10", "NULL" };
+static const char *brupcmd[] = { "light", "-A", "10", NULL };
+static const char *brdowncmd[] = { "light", "-U", "10", NULL };
+static const char *dpsetcmd[] = { "dpset", NULL };
+static const char *screenshotcmd[] = { "screenshot", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -77,7 +79,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_w,      spawn,          {.v = browsercmd } },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = privbrowsercmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
+  { MODKEY,                       XK_m,      spawn,          {.v = dpsetcmd } },
+  { 0,                       			XF86XK_Display,      spawn,          {.v = dpsetcmd } },
+  { MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
@@ -85,29 +89,31 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
-    { MODKEY,                       XK_space,  setlayout,      {0} },	
-    { MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
+  { MODKEY,                       XK_space,  setlayout,      {0} },	
+  { MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-    { MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
-    { MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
-    { MODKEY,                       XK_Left,   viewtoleft,     {0} },
-    { MODKEY,                       XK_Right,  viewtoright,    {0} },
-    { MODKEY|ShiftMask,             XK_Left,   tagtoleft,      {0} },
-    { MODKEY|ShiftMask,             XK_Right,  tagtoright,     {0} },
-    { 0,                            XF86XK_AudioRaiseVolume, spawn, { .v = volupcmd } },
-    { 0,                            XF86XK_AudioLowerVolume, spawn, { .v = voldowncmd } },
-    { 0,                            XF86XK_AudioMute, spawn, { .v = volmutecmd } },
-    { 0,                            XF86XK_MonBrightnessUp, spawn, { .v = brupcmd } },
-    { 0,                            XF86XK_MonBrightnessDown, spawn, { .v = brdowncmd } },
-    TAGKEYS(                        XK_1,                      0)
-    TAGKEYS(                        XK_1,                      0)
-    TAGKEYS(                        XK_1,                      0)
-    TAGKEYS(                        XK_1,                      0)
+  { MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
+  { MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
+  { MODKEY,                       XK_Left,   viewtoleft,     {0} },
+	{ MODKEY,                       XK_Right,  viewtoright,    {0} },
+	{ MODKEY|ShiftMask,             XK_Left,   tagtoleft,      {0} },
+	{ MODKEY|ShiftMask,             XK_Right,  tagtoright,     {0} },
+	{ 0,                            XF86XK_AudioRaiseVolume, spawn, { .v = volupcmd } },
+	{ 0,                            XF86XK_AudioLowerVolume, spawn, { .v = voldowncmd } },
+	{ 0,                            XF86XK_AudioMute, spawn, { .v = volmutecmd } },
+	{ 0,                            XF86XK_MonBrightnessUp, spawn, { .v = brupcmd } },
+	{ 0,                            XF86XK_MonBrightnessDown, spawn, { .v = brdowncmd } },
+	{ 0,                            XK_Print, 	spawn, 				 { .v = screenshotcmd } },
+	{ MODKEY,             					XK_p,      	spawn,         { .v = screenshotcmd } },
+	TAGKEYS(                        XK_1,                      0)
+	TAGKEYS(                        XK_1,                      0)
+	TAGKEYS(                        XK_1,                      0)
+	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)

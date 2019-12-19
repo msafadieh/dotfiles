@@ -3,7 +3,7 @@
 # run every 15 minutes
 while :
 do
-    WEATHER="$(curl http://wttr.in/poughkeepsie\?m\&format\=2)"
+    WEATHER="$(curl https://wttr.in/poughkeepsie\?m\&format\=2)"
     # run every second
     for run in {1..900}
     do
@@ -11,6 +11,7 @@ do
         # run every quarter second
         for run in {1..4}
         do
+
             DATE="$(date +"%a %d %b %Y λ %H:%M")"
             VOLUME="$(pactl list sinks | grep -o "[0-9]\+%" | head -n 1)"
             if [ $(< /sys/class/power_supply/BAT0/status) = "Full" ]; then
@@ -19,7 +20,10 @@ do
                 BATTERY="$(< /sys/class/power_supply/BAT0/capacity)%"
             fi
             xsetroot -name "[ $WEATHER ] [ $BATTERY ] [ $VOLUME ] [ $RAM ] [ $DATE ]"
+
             sleep 0.25
         done
+        # break on blank weather
+        [ -z "$WEATHER" ] && break
     done
 done

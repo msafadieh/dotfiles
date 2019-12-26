@@ -1,0 +1,18 @@
+#! /bin/sh
+# shutdown script for dmenu
+
+modes="lock\nsuspend\nreboot\npoweroff"
+
+if [ $1 ]; then
+    mode=$1
+else
+    mode=$(dmenuc $modes)
+fi
+
+if [ $mode = "lock" ]; then
+    loginctl lock-session 
+elif [ $mode = "suspend" ]; then
+    systemctl $mode
+else
+    $mode
+fi

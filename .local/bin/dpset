@@ -6,7 +6,7 @@ modes="laptop\nHDMI\ndual"
 if [ $1 ]; then
     mode=$1
 else
-    mode=$(echo -e $modes | dmenu -fn 'Fira Code-11' -nb '#4c2462' -nf '#f4f4f4' -sf '#f4f4f4' -sb '#965eb5')
+    mode=$(dmenuc $modes)
 fi
 
 if [ $mode = "laptop" ]; then

@@ -212,7 +212,7 @@ static void monocle(Monitor *m);
 static void motionnotify(XEvent *e);
 static void movemouse(const Arg *arg);
 static Client *nexttiled(Client *c);
-static void pop(Client *);
+// static void pop(Client *);
 static void propertynotify(XEvent *e);
 static void quit(const Arg *arg);
 static Monitor *recttomon(int x, int y, int w, int h);
@@ -231,7 +231,7 @@ static void sendmon(Client *c, Monitor *m);
 static void setclientstate(Client *c, long state);
 static void setfocus(Client *c);
 static void setfullscreen(Client *c, int fullscreen);
-static void setgaps(const Arg *arg);
+// static void setgaps(const Arg *arg);
 static void setlayout(const Arg *arg);
 static void setmfact(const Arg *arg);
 static void setup(void);
@@ -245,7 +245,7 @@ static void tagmon(const Arg *arg);
 static void tagtoleft(const Arg *arg);
 static void tagtoright(const Arg *arg);
 static void tile(Monitor *);
-static void togglebar(const Arg *arg);
+// static void togglebar(const Arg *arg);
 static void togglefloating(const Arg *arg);
 static void toggletag(const Arg *arg);
 static void toggleview(const Arg *arg);
@@ -274,7 +274,7 @@ static Client *wintosystrayicon(Window w);
 static int xerror(Display *dpy, XErrorEvent *ee);
 static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
-static void zoom(const Arg *arg);
+// static void zoom(const Arg *arg);
 
 /* variables */
 static Systray *systray =  NULL;
@@ -1324,14 +1324,14 @@ nexttiled(Client *c)
 	return c;
 }
 
-void
-pop(Client *c)
-{
-	detach(c);
-	attach(c);
-	focus(c);
-	arrange(c->mon);
-}
+// void
+// pop(Client *c)
+// {
+// 	detach(c);
+// 	attach(c);
+// 	focus(c);
+// 	arrange(c->mon);
+// }
 
 void
 propertynotify(XEvent *e)
@@ -1702,15 +1702,15 @@ setfullscreen(Client *c, int fullscreen)
 	}
 }
 
-void
-setgaps(const Arg *arg)
-{
-	if ((arg->i == 0) || (selmon->gappx + arg->i < 0))
-		selmon->gappx = 0;
-	else
-		selmon->gappx += arg->i;
-	arrange(selmon);
-}
+// void
+// setgaps(const Arg *arg)
+// {
+// 	if ((arg->i == 0) || (selmon->gappx + arg->i < 0))
+// 		selmon->gappx = 0;
+// 	else
+// 		selmon->gappx += arg->i;
+// 	arrange(selmon);
+// }
 
 void
 setlayout(const Arg *arg)
@@ -1920,25 +1920,25 @@ tile(Monitor *m)
 		}
 }
 
-void
-togglebar(const Arg *arg)
-{
-	selmon->showbar = !selmon->showbar;
-	updatebarpos(selmon);
-	resizebarwin(selmon);
-	if (showsystray) {
-		XWindowChanges wc;
-		if (!selmon->showbar)
-			wc.y = -bh;
-		else if (selmon->showbar) {
-			wc.y = 0;
-			if (!selmon->topbar)
-				wc.y = selmon->mh - bh;
-		}
-		XConfigureWindow(dpy, systray->win, CWY, &wc);
-	}
-	arrange(selmon);
-}
+// void
+// togglebar(const Arg *arg)
+// {
+// 	selmon->showbar = !selmon->showbar;
+// 	updatebarpos(selmon);
+// 	resizebarwin(selmon);
+// 	if (showsystray) {
+// 		XWindowChanges wc;
+// 		if (!selmon->showbar)
+// 			wc.y = -bh;
+// 		else if (selmon->showbar) {
+// 			wc.y = 0;
+// 			if (!selmon->topbar)
+// 				wc.y = selmon->mh - bh;
+// 		}
+// 		XConfigureWindow(dpy, systray->win, CWY, &wc);
+// 	}
+// 	arrange(selmon);
+// }
 
 void
 togglefloating(const Arg *arg)
@@ -2520,19 +2520,19 @@ systraytomon(Monitor *m) {
 	return t;
 }
 
-void
-zoom(const Arg *arg)
-{
-	Client *c = selmon->sel;
+// void
+// zoom(const Arg *arg)
+// {
+// 	Client *c = selmon->sel;
 
-	if (!selmon->lt[selmon->sellt]->arrange
-	|| (selmon->sel && selmon->sel->isfloating))
-		return;
-	if (c == nexttiled(selmon->clients))
-		if (!c || !(c = nexttiled(c->next)))
-			return;
-	pop(c);
-}
+// 	if (!selmon->lt[selmon->sellt]->arrange
+// 	|| (selmon->sel && selmon->sel->isfloating))
+// 		return;
+// 	if (c == nexttiled(selmon->clients))
+// 		if (!c || !(c = nexttiled(c->next)))
+// 			return;
+// 	pop(c);
+// }
 
 int
 main(int argc, char *argv[])

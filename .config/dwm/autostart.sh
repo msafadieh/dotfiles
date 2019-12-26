@@ -1,12 +1,14 @@
 #! /bin/sh
+export LOCATION=04038
+export XSECURELOCK_PASSWORD_PROMPT=time_hex
+xss-lock -n /usr/lib/xsecurelock/dimmer -l -- xsecurelock &
 
 feh --bg-scale ./wallpaper &
 
-pidof nextcloud || nextcloud &
+nextcloud &
 blueman-applet &
-pidof nm-applet || nm-applet &
-pidof xflux || xflux -z 12604 &
-pidof xautolock || xautolock -time 15 -locker 'systemctl suspend' -detectsleep -corners '0-00' &
+nm-applet &
+xflux -z $LOCATION &
 
-./statusbar.sh &
+./statusbar.sh $LOCATION &
 

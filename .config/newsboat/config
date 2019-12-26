@@ -1,2 +1,2 @@
 refresh-on-startup      yes
-browser                 $HOME/.newsboat/browserscript
+browser                 $HOME/.config/newsboat/browserscript

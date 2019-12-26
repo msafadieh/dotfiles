@@ -1,9 +1,9 @@
 #! /bin/sh
-
+LOCATION=$1
 # run every 15 minutes
 while :
 do
-    WEATHER="$(curl https://wttr.in/poughkeepsie\?m\&format\=2)"
+    WEATHER=$(curl http://wttr.in/$LOCATION\?m\&format\=%c%20%t)
     # run every second
     for run in {1..900}
     do

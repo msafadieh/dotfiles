@@ -1,8 +1,10 @@
 # VARIABLES
+export HISTFILE=~/.cache/zsh_history
 export PATH=~/.local/bin:~/.cabal/bin:$PATH
 export ZSH="/home/mhmd/.oh-my-zsh"
 export EDITOR='vim'
 export SYSTEMD_EDITOR='vim'
+export WEECHAT_HOME=~/.config/weechat
 
 # gpg stuff
 export GNUPGHOME=$HOME/.config/gnupg

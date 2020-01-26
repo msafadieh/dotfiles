@@ -1,0 +1,2 @@
+#! /bin/sh
+/bin/dmenu -fn 'Fira Code:size=10:antialias=true:autohint=true' -nb '#222222' -nf '#bbbbbb' -sf '#eeeeee' -sb '#4c2462' "$@" < /dev/stdin

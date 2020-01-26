@@ -1,0 +1,5 @@
+#! /bin/sh
+
+pidof mpd || mpd
+
+exec st -c ncmpcpp -e ncmpcpp

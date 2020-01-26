@@ -1,9 +1,10 @@
 #! /bin/sh
 # screenshot script
 
-filename=$(date +%Y%m%d%H%M%S).png
-directory=$HOME/screenshots/
+directory=$HOME/Screenshots/
+filename=$directory$(date +%Y%m%d%H%M%S).png
 
 mkdir -p $directory
-import $directory$filename
+import $filename
+[ -f $filename ] && ln -f $filename $directory/latest.png
 

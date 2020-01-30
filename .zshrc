@@ -6,6 +6,9 @@ export EDITOR='vim'
 export SYSTEMD_EDITOR='vim'
 export WEECHAT_HOME=~/.config/weechat
 
+# get z working
+[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
+
 # gpg stuff
 export GNUPGHOME=$HOME/.config/gnupg
 export GPG_TTY=$(tty)
@@ -17,7 +20,7 @@ gpg-connect-agent updatestartuptty /bye > /dev/null
 export LC_ALL=en_US.UTF-8
 
 # OH-MY-ZSH CONFIG
-ZSH_THEME="lambda-gitster"
+ZSH_THEME="spaceship"
 HYPHEN_INSENSITIVE="true"
 DISABLE_UPDATE_PROMPT="true"
 DISABLE_AUTO_TITLE="true"
@@ -27,6 +30,7 @@ source $ZSH/oh-my-zsh.sh
 # ALIASES
 alias ld-off='xrandr --output eDP --off'
 alias vassar='ssh -p 443 msafadieh@mote.cs.vassar.edu'
+alias x='aunpack'
 
 # get some tunes one
 alias lofi='mpv --no-video --no-terminal https://www.youtube.com/watch\?v\=hHW1oY26kxQ &'

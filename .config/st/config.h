@@ -8,6 +8,8 @@
 static char *font = "Fira Code:pixelsize=12:antialias=true:autohint=true";
 static int borderpx = 2;
 
+float alpha = 0.8;
+
 /*
  * What program is execed by st depends of these precedence rules:
  * 1: program passed with -e
@@ -110,6 +112,7 @@ static const char *colorname[] = {
 	"#cccccc",
 	"#555555",
     "#420866",
+    "#16091e",
     "white"
 };
 
@@ -118,8 +121,8 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 259;
-unsigned int defaultbg = 258;
+unsigned int defaultfg = 260;
+unsigned int defaultbg = 259;
 static unsigned int defaultcs = 256;
 static unsigned int defaultrcs = 257;
 

@@ -9,6 +9,8 @@ feh --bg-scale ./wallpaper &
 nextcloud &
 nm-applet &
 xflux -z $LOCATION &
+picom &
+caffeine &
 
 ./statusbar.sh $LOCATION &
 

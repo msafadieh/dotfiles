@@ -35,6 +35,7 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     iscentered     isfloating   monitor */
     { "Tor Browser", NULL,    NULL,       0,            1,              1,          -1 },
     { "ncmpcpp",     NULL,    NULL,       0,            1,              1,          -1 },
+    { "Gcr-prompter", NULL,   NULL,       0,            1,              1,          -1 },
 };
 
 /* layout(s) */

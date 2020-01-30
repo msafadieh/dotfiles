@@ -14,7 +14,12 @@ do
         do
 
             DATE="$(date +"%a %d %b %Y λ %H:%M")"
-            VOLUME="$(pactl list sinks | grep -o "[0-9]\+%" | tail -n 2 | head -n 1)"
+            
+            sinks="$(pactl list sinks)"
+            VOLUME="$(grep -o "[0-9]\+%" <<< $sinks | tail -2 | head -1)"
+            MUTE="$(awk '/Mute/ {print $2}' <<< $sinks | tail -1)"
+            [ $MUTE = "yes" ] && VOLUME="$VOLUME [M]"
+
             if [ $(< /sys/class/power_supply/AC/online) = "0" ]; then
                 ACSTATUS="bat"
             else

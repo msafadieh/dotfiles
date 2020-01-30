@@ -16,8 +16,8 @@ do
             DATE="$(date +"%a %d %b %Y λ %H:%M")"
             
             sinks="$(pactl list sinks)"
-            VOLUME="$(grep -o "[0-9]\+%" <<< $sinks | tail -2 | head -1)"
-            MUTE="$(awk '/Mute/ {print $2}' <<< $sinks | tail -1)"
+            VOLUME="$(awk '/[0-9]+%/ {pl = l; l = $5} END {print pl}' <<< $sinks)"
+            MUTE="$(awk '/Mute/ {l=$2} END {print l}' <<< $sinks)"
             [ $MUTE = "yes" ] && VOLUME="$VOLUME [M]"
 
             if [ $(< /sys/class/power_supply/AC/online) = "0" ]; then

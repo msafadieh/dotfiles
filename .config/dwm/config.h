@@ -78,7 +78,7 @@ static const char *powermancmd[] = { "powerman", NULL };
 static const char *ncmpcppcmd[] = { "music", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
-
+static const char *loficmd[] = { "lofi", NULL };
 
 /* macros for some keys */
 #define XK_Dp XF86XK_Display
@@ -96,8 +96,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = privbrowsercmd } },
 	{ MODKEY,                       XK_m,      spawn,          {.v = dpsetcmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = ncmpcppcmd } },
 	{ MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
-    { MODKEY|ShiftMask,             XK_Return, spawn,          {.v = ncmpcppcmd } },
+	{ MODKEY,                       XK_l,      spawn,          {.v = loficmd } },
 	{ 0,                            XK_Dp,     spawn,          {.v = dpsetcmd } },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },

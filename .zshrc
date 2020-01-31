@@ -32,9 +32,6 @@ alias ld-off='xrandr --output eDP --off'
 alias vassar='ssh -p 443 msafadieh@mote.cs.vassar.edu'
 alias x='aunpack'
 
-# get some tunes one
-alias lofi='mpv --no-video --no-terminal https://www.youtube.com/watch\?v\=hHW1oY26kxQ &'
-
 # vi key bindings
 bindkey -v
 export KEYTIMEOUT=1

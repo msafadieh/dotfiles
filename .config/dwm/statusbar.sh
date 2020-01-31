@@ -15,7 +15,7 @@ do
         #
         # FREE RAM
         #
-        RAM="$(free --mega | grep -o "[0-9]\+" | sed -n 2p)MB"
+        RAM="MEM $(free --mega | grep -o "[0-9]\+" | sed -n 2p)MB"
         # run every quarter second
         for run in {1..4}
         do
@@ -28,21 +28,14 @@ do
             # VOLUME
             #
             sinks="$(pactl list sinks)"
-            VOLUME="$(awk '/[0-9]+%/ {pl = l; l = $5} END {print pl}' <<< $sinks)"
+            VOLUME="VOL $(awk '/[0-9]+%/ {pl = l; l = $5} END {print pl}' <<< $sinks)"
             MUTE="$(awk '/Mute/ {l=$2} END {print l}' <<< $sinks)"
             [ $MUTE = "yes" ] && VOLUME="$VOLUME [M]"
 
-            #
-            # BATTERY
-            #
-            if [ $(< /sys/class/power_supply/AC/online) = "0" ]; then
-                ACSTATUS="bat"
-            else
-                ACSTATUS="ac"
-            fi
-
             BATTERY=$(< /sys/class/power_supply/BAT0/capacity)
-            if [ $ACSTATUS = "ac" ] || [ $BATTERY -gt 15 ] || [ -z $BAT_LOW ]; then
+            ACSTATUS=$(< /sys/class/power_supply/AC/online)
+
+            if [ $ACSTATUS != "0" ] || [ $BATTERY -gt 15 ] || [ -z $BAT_LOW ]; then
                 BAT_CRITIC=0
                 BAT_LOW=0
             elif [ $BATTERY -le 5 ]; then
@@ -52,9 +45,11 @@ do
                 [ $BAT_LOW -eq 0 ] && notify-send "Low battery warning ($BATTERY %)"
                 BAT_LOW=1
             fi
-
+            
+            BATTERY="BAT $BATTERY%"
+            [ $ACSTATUS != "0" ] && BATTERY="$BATTERY (AC)"
             # updates statusbar
-            xsetroot -name "[ $WEATHER ] [ $BATTERY% ($ACSTATUS) ] [ $VOLUME ] [ $RAM ] [ $DATE ]"
+            xsetroot -name "[ $WEATHER ] [ $BATTERY ] [ $VOLUME ] [ $RAM ] [ $DATE ]"
 
             sleep 0.25
         done

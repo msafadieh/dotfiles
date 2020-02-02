@@ -3,16 +3,16 @@
 
 modes="laptop\nHDMI\ndual"
 
-if [ $1 ]; then
-    mode=$1
+if [ "$1" ]; then
+    mode="$1"
 else
-    mode=$(echo -e $modes | dmenu)
+    mode=$(printf "$modes" | dmenu)
 fi
 
-if [ $mode = "laptop" ]; then
+if [ "$mode" = "laptop" ]; then
     xrandr --output eDP --mode 1920x1080 --output HDMI-A-0 --off
-elif [ $mode = "HDMI" ]; then
+elif [ "$mode" = "HDMI" ]; then
     xrandr --output HDMI-A-0 --mode 1920x1080 --output eDP --off
-elif [ $mode = "dual" ]; then
+elif [ "$mode" = "dual" ]; then
     xrandr --output eDP --mode 1920x1080 --pos 0x0 --output HDMI-A-0 --mode 1920x1080 --pos 1920x0
 fi

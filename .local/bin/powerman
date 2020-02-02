@@ -3,16 +3,16 @@
 
 modes="lock\nsuspend\nreboot\npoweroff"
 
-if [ $1 ]; then
+if [ "$1" ]; then
     mode=$1
 else
-    mode=$(echo -e $modes | dmenu)
+    mode=$(printf $modes | dmenu)
 fi
 
-if [ $mode = "lock" ]; then
+if [ "$mode" = "lock" ]; then
     loginctl lock-session 
-elif [ $mode = "suspend" ]; then
-    systemctl $mode
+elif [ "$mode" = "suspend" ]; then
+    systemctl "$mode"
 else
     $mode
 fi

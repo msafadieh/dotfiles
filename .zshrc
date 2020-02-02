@@ -1,10 +1,10 @@
 # VARIABLES
-export HISTFILE=~/.cache/zsh_history
-export PATH=~/.local/bin:~/.cabal/bin:$PATH
-export ZSH="/home/mhmd/.oh-my-zsh"
+export HISTFILE=$HOME/.cache/zsh_history
+export PATH=$HOME/.local/bin:$PATH
+export ZSH=$HOME/.oh-my-zsh
 export EDITOR='vim'
 export SYSTEMD_EDITOR='vim'
-export WEECHAT_HOME=~/.config/weechat
+export WEECHAT_HOME=$HOME/.config/weechat
 
 # get z working
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh

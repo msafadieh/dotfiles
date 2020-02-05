@@ -8,11 +8,9 @@ xss-lock -n /usr/lib/xsecurelock/dimmer -l -- xsecurelock &
 feh --bg-scale ./wallpaper &
 
 trayer --transparent true --align right --edge bottom --widthtype request --tint "#222222" --alpha 184 &
-nextcloud &
-nm-applet &
+syncnc -w &
 xflux -z $LOCATION &
 picom --no-fading-openclose &
-caffeine &
 
 ./statusbar.sh $LOCATION &
 

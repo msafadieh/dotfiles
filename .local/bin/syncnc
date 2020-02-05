@@ -4,18 +4,36 @@ LOCKFILE=$HOME/.cache/syncnclock
 LOGDIR=$HOME/.cache/syncnc
 CONFIG=$HOME/.config/syncnc
 
-if [ -f "$LOCKFILE" ]; then
-    echo "[$(< $LOCKFILE)] already running"
-    exit
-fi
-
-trap "rm -f $LOCKFILE exit" INT TERM EXIT
-echo $$ > $LOCKFILE
 
 mkdir -p $LOGDIR
 
 source $CONFIG/config.env
 
-nextcloudcmd -u "$USERNAME" -p "$PASSWORD" "$DIRECTORY" "$HOST" >> $LOGDIR/stdout 2>> $LOGDIR/stderr 
+run_sync() {    
+    
+    if [ -f "$LOCKFILE" ]; then
+        echo "[$(< $LOCKFILE)] already running"
+        return
+    fi
 
-rm -rf $LOCKFILE
+    echo $$ > $LOCKFILE
+
+    nextcloudcmd -u "$USERNAME" -p "$PASSWORD" "$DIRECTORY" "$HOST" >> $LOGDIR/stdout 2>> $LOGDIR/stderr
+
+    rm -rf $LOCKFILE
+}
+
+
+
+if [ "$1" = "-w" ]; then
+    while true
+    do
+        inotifywait -e modify -e move -e create -e delete "$DIRECTORY" 
+        run_sync
+    done
+else
+    run_sync
+fi
+
+
+

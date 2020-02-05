@@ -2,6 +2,7 @@
 if pidof mpv > /dev/null;
 then
     killall mpv
+    killall caffeinated
 else
     modes="chill\nstudy"
     mode=$(printf "$modes" | dmenu)
@@ -11,5 +12,6 @@ else
     else
         url="https://www.youtube.com/watch?v=hHW1oY26kxQ"
     fi
-    mpv --no-video --no-terminal "$url" &
+    caffeinated -p .cache/caffeinated &
+    mpv --no-video --no-terminal "$url"
 fi

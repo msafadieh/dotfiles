@@ -32,6 +32,10 @@ do
             MUTE="$(awk '/Mute/ {l=$2} END {print l}' <<< $sinks)"
             [ $MUTE = "yes" ] && VOLUME="$VOLUME [M]"
 
+            #
+            # BATTERY
+            #
+
             BATTERY=$(< /sys/class/power_supply/BAT0/capacity)
             ACSTATUS=$(< /sys/class/power_supply/AC/online)
 
@@ -48,8 +52,17 @@ do
             
             BATTERY="BAT $BATTERY%"
             [ $ACSTATUS != "0" ] && BATTERY="$BATTERY (AC)"
+            
+            #
+            # caffeinated
+            #
+            if [ -f "$HOME/.cache/caffeinated" ]; then
+                CAFFEINATED="[ C ] "
+            else
+                CAFFEINATED=""
+            fi
             # updates statusbar
-            xsetroot -name "[ $WEATHER ] [ $BATTERY ] [ $VOLUME ] [ $RAM ] [ $DATE ]"
+            xsetroot -name "$CAFFEINATED[ $WEATHER ] [ $BATTERY ] [ $VOLUME ] [ $RAM ] [ $DATE ]"
 
             sleep 0.25
         done

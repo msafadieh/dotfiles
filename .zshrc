@@ -31,6 +31,7 @@ source $ZSH/oh-my-zsh.sh
 alias ld-off='xrandr --output eDP --off'
 alias vassar='ssh -p 443 msafadieh@mote.cs.vassar.edu'
 alias x='aunpack'
+alias caff='caffeinated -p .cache/caffeinated'
 
 # vi key bindings
 bindkey -v

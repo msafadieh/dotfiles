@@ -8,8 +8,8 @@
     "window.zoomLevel": 0,
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 100,
-    "editor.insertSpaces": true,
-    "editor.tabSize": 2,
+    "editor.insertSpaces": false,
+    "editor.tabSize": 4,
     "[python]": {
         "editor.insertSpaces": true,
         "editor.tabSize": 4
@@ -17,7 +17,7 @@
     "git.confirmSync": false,
     "explorer.confirmDelete": false,
     "editor.suggestSelection": "first",
-    "python.jediEnabled": false,
+    "python.jediEnabled": true,
     "update.mode": "none",
     "workbench.enableExperiments": false,
     "workbench.settings.enableNaturalLanguageSearch": false,

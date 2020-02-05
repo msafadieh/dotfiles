@@ -3,5 +3,13 @@ if pidof mpv > /dev/null;
 then
     killall mpv
 else
-    mpv --no-video --no-terminal 'https://www.youtube.com/watch?v=hHW1oY26kxQ' &
+    modes="chill\nstudy"
+    mode=$(printf "$modes" | dmenu)
+
+    if [ "$mode" = "chill" ]; then
+        url="https://www.youtube.com/watch?v=EcEMX-63PKY"
+    else
+        url="https://www.youtube.com/watch?v=hHW1oY26kxQ"
+    fi
+    mpv --no-video --no-terminal "$url" &
 fi

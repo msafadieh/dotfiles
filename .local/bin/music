@@ -2,4 +2,4 @@
 
 pidof mpd || mpd
 
-exec st -c ncmpcpp -e ncmpcpp
+exec st -c st-center -e ncmpcpp

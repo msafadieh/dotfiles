@@ -11,6 +11,7 @@ trayer --transparent true --align right --edge bottom --widthtype request --tint
 syncnc -w &
 xflux -z $LOCATION &
 picom --no-fading-openclose &
+caffeine &
 
 ./statusbar.sh $LOCATION &
 

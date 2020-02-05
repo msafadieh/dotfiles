@@ -17,7 +17,7 @@ weather() {
 }
 
 ram() {
-    RAM="MEM $(free --mega | awk '/Mem/ {print $3}')MB"
+    RAM="$(free --mega | awk '/Mem/ {print $3}')MB"
 }
 
 datetime() {
@@ -31,9 +31,10 @@ volume() {
     mute="$(awk '/Mute/ {l=$2} END {print l}' <<< $sinks)"
     vol="$(awk '/[0-9]+%/ {pl = l; l = $5} END {print pl}' <<< $sinks)"
 
-    VOLUME="VOL $vol"
+    VOLUME="$vol"
+    VOLUME_ICON="墳"
     if [ $mute = "yes" ]; then
-        VOLUME="$VOLUME [M]"
+        VOLUME_ICON="婢"
     fi
 }
 
@@ -53,9 +54,23 @@ battery() {
         [ $BAT_LOW -eq 0 ] && notify-send "Low battery warning ($battery %)"
         BAT_LOW=1
     fi
+
     
-    BATTERY="BAT $battery%"
-    [ $ac != "0" ] && BATTERY="$BATTERY (AC)"   
+    BATTERY="$battery%"
+    if [ $ac != "0" ]; then
+        BATTERY_ICON=""
+    elif [ $battery -ge 95 ]; then
+        BATTERY_ICON=" "
+    elif [ $battery -ge 75 ]; then
+        BATTERY_ICON=" "
+    elif [ $battery -ge 50 ]; then
+        BATTERY_ICON=" "
+    elif [ $battery -ge 5 ]; then
+        BATTERY_ICON=" "
+    else
+        BATTERY_ICON=" "
+    fi
+    
 }
 
 
@@ -72,7 +87,7 @@ do
             datetime 
             volume
             battery
-            xsetroot -name "[ $WEATHER ] [ $BATTERY ] [ $VOLUME ] [ $RAM ] [ $DATETIME ]"
+            xsetroot -name " $WEATHER   $RAM  $BATTERY_ICON $BATTERY  $VOLUME_ICON $VOLUME   $DATETIME "
             sleep 0.25
         done
         # break on blank weather

@@ -17,7 +17,7 @@ weather() {
 }
 
 ram() {
-    RAM="MEM $(free --mega | grep -o "[0-9]\+" | sed -n 2p)MB"
+    RAM="MEM $(free --mega | awk '/Mem/ {print $3}')MB"
 }
 
 datetime() {

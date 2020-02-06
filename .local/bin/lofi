@@ -8,7 +8,7 @@ else
 
     if [ "$mode" = "chill" ]; then
         url="https://www.youtube.com/watch?v=EcEMX-63PKY"
-    else
+    elif [ "$mode" = "study"]; then
         url="https://www.youtube.com/watch?v=hHW1oY26kxQ"
     fi
     mpv --no-video --no-terminal "$url"

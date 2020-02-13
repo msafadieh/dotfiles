@@ -57,9 +57,15 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
 
-# Spaceship theme and zsh-syntax-highlighting
-source /usr/lib/spaceship-prompt/spaceship.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# get z working
-[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
+# spaceship prompt
+autoload -U promptinit
+promptinit
+export SPACESHIP_ROOT=/usr/lib/spaceship-prompt/
+prompt spaceship
 
+PLUGINS=( /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+	  /usr/share/z/z.sh )
+
+for plugin in $PLUGINS; do
+	[[ -r "$plugin" ]] && . "$plugin"
+done

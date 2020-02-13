@@ -6,4 +6,5 @@ if [ "$(xrandr | grep -i 'HDMI-A-0 connected')" ]; then
     dpset HDMI
 fi
 mkdir -p ~/.cache/dwm
+rm ~/.cache/dwm-lock
 exec dwm >> ~/.cache/dwm/stdout 2>> ~/.cache/dwm/stderr

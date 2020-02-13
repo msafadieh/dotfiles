@@ -1,7 +1,7 @@
 #! /bin/sh
 # screenshot script
 
-directory=$HOME/Screenshots/
+directory=$HOME/screenshots/
 filename=$directory$(date +%Y%m%d%H%M%S).png
 
 mkdir -p "$directory"

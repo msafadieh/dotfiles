@@ -3,9 +3,9 @@
 LOGDIR=$HOME/.cache/syncnc
 CONFIG=$HOME/.config/syncnc
 
-mkdir -p $LOGDIR
+mkdir -p "$LOGDIR"
 
-source $CONFIG/config.env
+. "$CONFIG/config.env"
 
 run_sync() {
  
@@ -14,14 +14,14 @@ run_sync() {
         return
     fi
 
-    nextcloudcmd -u "$USERNAME" -p "$PASSWORD" "$DIRECTORY" "$HOST" >> $LOGDIR/stdout 2>> $LOGDIR/stderr
+    nextcloudcmd -u "$USERNAME" -p "$PASSWORD" "$DIRECTORY" "$HOST" >> "$LOGDIR/stdout" 2>> "$LOGDIR/stderr"
 }
 
 [ "$1" = "-w" ] && loop=1
 run_sync
 while [ $loop ]
 do
-    inotifywait -e modify -e move -e create -e delete "$DIRECTORY" 
+    inotifywait -r -e modify -e move -e create -e delete "$DIRECTORY" 
     run_sync
 done
 

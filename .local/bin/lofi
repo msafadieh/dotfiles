@@ -4,11 +4,12 @@ then
     killall mpv
 else
     modes="chill\nstudy"
+    # shellcheck disable=SC2059
     mode=$(printf "$modes" | dmenu)
 
     if [ "$mode" = "chill" ]; then
         url="https://www.youtube.com/watch?v=EcEMX-63PKY"
-    elif [ "$mode" = "study"]; then
+    elif [ "$mode" = "study" ]; then
         url="https://www.youtube.com/watch?v=hHW1oY26kxQ"
     fi
     mpv --no-video --no-terminal "$url"

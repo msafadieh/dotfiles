@@ -6,7 +6,8 @@ modes="lock\nsuspend\nreboot\npoweroff"
 if [ "$1" ]; then
     mode=$1
 else
-    mode=$(printf $modes | dmenu)
+    # shellcheck disable=SC2059
+    mode=$(printf "$modes" | dmenu)
 fi
 
 if [ "$mode" = "lock" ]; then

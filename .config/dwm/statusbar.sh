@@ -21,17 +21,16 @@ ram() {
 }
 
 datetime() {
-    DATETIME="$(date +"%a %d %b %Y λ %H:%M")"
+    DATETIME="$(date +"%a %d %b λ %H:%M")"
 }
 
 volume() {
-    local sinks vol mute
+    local sinks mute
 
     sinks="$(pactl list sinks)"
     mute="$(awk '/Mute/ {l=$2} END {print l}' <<< $sinks)"
-    vol="$(awk '/[0-9]+%/ {pl = l; l = $5} END {print pl}' <<< $sinks)"
+    VOLUME="$(awk '/[0-9]+%/ {pl = l; l = $5} END {print pl}' <<< $sinks)"
 
-    VOLUME="$vol"
     VOLUME_ICON="墳"
     if [ $mute = "yes" ]; then
         VOLUME_ICON="婢"

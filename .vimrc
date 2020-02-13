@@ -5,8 +5,7 @@ filetype plugin indent on
 filetype on
 silent! helptags ALL
 
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set expandtab
+autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4
 
+set rtp+=/usr/share/powerline/bindings/vim
+set laststatus=2

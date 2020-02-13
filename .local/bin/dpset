@@ -6,6 +6,7 @@ modes="laptop\nHDMI\ndual"
 if [ "$1" ]; then
     mode="$1"
 else
+    # shellcheck disable=SC2059
     mode=$(printf "$modes" | dmenu)
 fi
 

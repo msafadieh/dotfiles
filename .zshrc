@@ -1,13 +1,34 @@
-# VARIABLES
+# ENV VARIABLES
 export HISTFILE=$HOME/.cache/zsh_history
 export PATH=$HOME/.local/bin:$PATH
 export ZSH=$HOME/.oh-my-zsh
 export EDITOR='vim'
-export SYSTEMD_EDITOR='vim'
+export SYSTEMD_EDITOR=$EDITOR
 export WEECHAT_HOME=$HOME/.config/weechat
+export LC_ALL=en_US.UTF-8
 
-# get z working
-[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
+# ALIASES
+alias vassar='ssh -p 443 msafadieh@mote.cs.vassar.edu'
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias x='aunpack'
+
+# colored man output
+man() {
+	LESS_TERMCAP_md=$'\e[01;31m' \
+	LESS_TERMCAP_me=$'\e[0m' \
+	LESS_TERMCAP_se=$'\e[0m' \
+	LESS_TERMCAP_so=$'\e[01;44;33m' \
+	LESS_TERMCAP_ue=$'\e[0m' \
+	LESS_TERMCAP_us=$'\e[01;32m' \
+	command man "$@"
+}
+
+# start X
+if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+  mkdir -p ~/.cache/X11
+  exec startx >> ~/.cache/X11/stdout 2>> ~/.cache/X11/stderr
+fi
 
 # gpg stuff
 export GNUPGHOME=$HOME/.config/gnupg
@@ -16,32 +37,29 @@ export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
 gpg-connect-agent updatestartuptty /bye > /dev/null
 
-# locale
-export LC_ALL=en_US.UTF-8
-
-# OH-MY-ZSH CONFIG
-ZSH_THEME="spaceship"
-HYPHEN_INSENSITIVE="true"
-DISABLE_UPDATE_PROMPT="true"
-DISABLE_AUTO_TITLE="true"
-plugins=(git python systemd zsh-syntax-highlighting)
-source $ZSH/oh-my-zsh.sh
-
-# ALIASES
-alias ld-off='xrandr --output eDP --off'
-alias vassar='ssh -p 443 msafadieh@mote.cs.vassar.edu'
-alias x='aunpack'
-alias caff='caffeinated -p .cache/caffeinated'
+# autocompletion
+autoload -U compaudit compinit
+ZSH_COMPDUMP="${ZDOTDIR:-${HOME}}/.zcompdump-${ZSH_VERSION}"
+compinit -u -C -d "${ZSH_COMPDUMP}"
+zstyle ':completion:*' menu select
+setopt COMPLETE_ALIASES
+zstyle ':completion::complete:*' gain-privileges 1
 
 # vi key bindings
 bindkey -v
 export KEYTIMEOUT=1
 
 # enable line search on arrow up/down
-bindkey -v "^[OA" up-line-or-beginning-search
-bindkey -v "^[OB" down-line-or-beginning-search
+autoload up-line-or-beginning-search
+autoload down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search
+bindkey "^[[B" down-line-or-beginning-search
 
-mkdir -p ~/.cache/X11
-if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-  exec startx >> ~/.cache/X11/stdout 2>> ~/.cache/X11/stderr
-fi
+# Spaceship theme and zsh-syntax-highlighting
+source /usr/lib/spaceship-prompt/spaceship.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# get z working
+[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
+

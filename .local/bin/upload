@@ -1,0 +1,18 @@
+#! /bin/sh
+
+SERVICE="https://patchbay.pub"
+CURL_OUT="Uploaded:       %{size_upload} bytes\nTotal time:  %{time_total}s \n"
+
+if [ ! -f "$1" ]; then
+   echo "FILE NOT FOUND AT '$1'"
+   exit
+fi
+
+filename="$(basename "$1")"
+URL="$SERVICE/$RANDOM-$filename"
+
+echo "Uploading $filename"
+echo "Go to $URL on another device"
+
+firefox "$URL"
+curl -w "$CURL_OUT" --data-binary "@$1" "$URL"

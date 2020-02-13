@@ -1,5 +1,4 @@
 # ENV VARIABLES
-export HISTFILE=$HOME/.cache/zsh_history
 export PATH=$HOME/.local/bin:$PATH
 export ZSH=$HOME/.oh-my-zsh
 export EDITOR='vim'
@@ -63,7 +62,8 @@ promptinit
 export SPACESHIP_ROOT=/usr/lib/spaceship-prompt/
 prompt spaceship
 
-PLUGINS=( /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+PLUGINS=( $HOME/.local/lib/history.zsh
+	  /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 	  /usr/share/z/z.sh )
 
 for plugin in $PLUGINS; do

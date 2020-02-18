@@ -14,5 +14,4 @@ URL="$SERVICE/$RANDOM-$filename"
 echo "Uploading $filename"
 echo "Go to $URL on another device"
 
-firefox "$URL"
 curl -w "$CURL_OUT" --data-binary "@$1" "$URL"

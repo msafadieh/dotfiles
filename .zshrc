@@ -1,5 +1,6 @@
 # ENV VARIABLES
 export PATH=$HOME/.local/bin:$PATH
+export HISTFILE=$HOME/.cache/zsh_history
 export ZSH=$HOME/.oh-my-zsh
 export EDITOR='vim'
 export SYSTEMD_EDITOR=$EDITOR
@@ -23,18 +24,18 @@ man() {
 	command man "$@"
 }
 
-# start X
-if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-  mkdir -p ~/.cache/X11
-  exec startx >> ~/.cache/X11/stdout 2>> ~/.cache/X11/stderr
-fi
-
 # gpg stuff
 export GNUPGHOME=$HOME/.config/gnupg
 export GPG_TTY=$(tty)
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
 gpg-connect-agent updatestartuptty /bye > /dev/null
+
+# start X
+if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+  mkdir -p ~/.cache/X11
+  exec startx >> ~/.cache/X11/stdout 2>> ~/.cache/X11/stderr
+fi
 
 # autocompletion
 autoload -U compaudit compinit
@@ -63,6 +64,7 @@ export SPACESHIP_ROOT=/usr/lib/spaceship-prompt/
 prompt spaceship
 
 PLUGINS=( $HOME/.local/lib/history.zsh
+	  /usr/share/LS_COLORS/dircolors.sh
 	  /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 	  /usr/share/z/z.sh )
 

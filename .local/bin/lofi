@@ -1,16 +1,18 @@
 #! /bin/sh
+PIDFILE="$HOME/.cache/lofi"
 if pidof mpv > /dev/null;
 then
-    killall mpv
+    xargs kill < $PIDFILE && rm $PIDFILE
 else
     modes="chill\nstudy"
     # shellcheck disable=SC2059
     mode=$(printf "$modes" | dmenu)
 
     if [ "$mode" = "chill" ]; then
-        url="https://www.youtube.com/watch?v=EcEMX-63PKY"
+        url="https://www.youtube.com/watch?v=RgVs8mkgHSU"
     elif [ "$mode" = "study" ]; then
-        url="https://www.youtube.com/watch?v=hHW1oY26kxQ"
+        url="https://www.youtube.com/watch?v=5qap5aO4i9A"
     fi
-    mpv --no-video --no-terminal "$url"
+    mpv --no-video "$url" &
+    echo "$!" > $PIDFILE
 fi

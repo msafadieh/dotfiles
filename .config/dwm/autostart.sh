@@ -15,5 +15,5 @@ xflux -z $LOCATION &
 picom --no-fading-openclose &
 caffeine &
 
-./statusbar.sh $LOCATION &
+statusbar $LOCATION &
 

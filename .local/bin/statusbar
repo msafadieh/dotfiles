@@ -21,7 +21,7 @@ ram() {
 }
 
 datetime() {
-    DATETIME="$(date +"%a %d %b λ %H:%M")"
+    DATETIME="$(date +"%a %d %b ﬦ %H:%M")"
 }
 
 volume() {

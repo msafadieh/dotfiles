@@ -9,7 +9,7 @@ xss-lock -n /usr/lib/xsecurelock/dimmer -l -- xsecurelock &
 
 feh --bg-scale ./wallpaper &
 
-trayer --transparent true --align right --edge bottom --distance 8 --margin 8 --widthtype request --tint "#222222" --alpha 184 &
+trayer --align right --edge bottom --distance 8 --margin 8 --widthtype request --tint "#222222" &
 syncnc -w &
 xflux -z $LOCATION &
 picom --no-fading-openclose &

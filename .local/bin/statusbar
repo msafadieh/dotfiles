@@ -57,7 +57,7 @@ battery() {
     
     BATTERY="$battery%"
     if [ $ac != "0" ]; then
-        BATTERY_ICON=""
+        BATTERY_ICON="ﮣ"
     elif [ $battery -ge 95 ]; then
         BATTERY_ICON=" "
     elif [ $battery -ge 75 ]; then
@@ -86,7 +86,7 @@ do
             datetime 
             volume
             battery
-            xsetroot -name " $WEATHER   $RAM  $BATTERY_ICON $BATTERY  $VOLUME_ICON $VOLUME   $DATETIME "
+            xsetroot -name " $WEATHER   $RAM  $BATTERY_ICON $BATTERY  $VOLUME_ICON $VOLUME   $DATETIME "
             sleep 0.25
         done
         # break on blank weather

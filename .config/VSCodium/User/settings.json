@@ -3,7 +3,7 @@
     "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": true,
     "workbench.iconTheme": "dobri-theme-icons",
-    "workbench.colorTheme": "Dobri Next -C04- Material",
+    "workbench.colorTheme": "Gruvbox Dark Medium",
     "window.menuBarVisibility": "toggle",
     "window.zoomLevel": 0,
     "files.autoSave": "afterDelay",

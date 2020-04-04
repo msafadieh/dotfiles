@@ -5,6 +5,6 @@ directory="$HOME/scrns"
 filename="$directory/$(date +%Y%m%d%H%M%S).png"
 
 mkdir -p "$directory"
-import "$filename"
+grim -g "$(slurp)" "$filename"
 [ -f "$filename" ] && ln -f "$filename" "$directory/latest.png"
 

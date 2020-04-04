@@ -21,7 +21,7 @@ ram() {
 }
 
 datetime() {
-    DATETIME="$(date +"%a %d %b ﬦ %H:%M")"
+	DATETIME="$(date +"%a %d %B @ %H:%M" | tr "[:upper:]" "[:lower:]")"
 }
 
 volume() {
@@ -31,10 +31,9 @@ volume() {
     mute="$(awk '/Mute/ {l=$2} END {print l}' <<< $sinks)"
     VOLUME="$(awk '/[0-9]+%/ {pl = l; l = $5} END {print pl}' <<< $sinks)"
 
-    VOLUME_ICON="墳"
     if [ $mute = "yes" ]; then
-        VOLUME_ICON="婢"
-    fi
+        VOLUME=$VOLUME~
+	fi
 }
 
 battery() {
@@ -57,37 +56,43 @@ battery() {
     
     BATTERY="$battery%"
     if [ $ac != "0" ]; then
-        BATTERY_ICON="ﮣ"
-    elif [ $battery -ge 95 ]; then
-        BATTERY_ICON=" "
-    elif [ $battery -ge 75 ]; then
-        BATTERY_ICON=" "
-    elif [ $battery -ge 50 ]; then
-        BATTERY_ICON=" "
-    elif [ $battery -ge 5 ]; then
-        BATTERY_ICON=" "
-    else
-        BATTERY_ICON=" "
+        BATTERY=$BATTERY^
     fi
     
 }
 
 
+function network() {
+	output=$(nmcli)
+	if grep 'en[a-z0-9]+: connected' <<< "$output"; then
+		NETWORK="ethernet"
+	else
+		wifi=$(awk '/wl[a-z0-9]+: connected/ { s = $4; for (i = 5; i <= NF; i++) { s = s " " $i  }; print s }' <<< "$output")
+		if [ -z "$wifi" ]; then
+			NETWORK="disconnected"
+		else
+			NETWORK=$wifi
+		fi
+	fi
+}
 
 while :
 do
     weather
     for run in {1..3600}
     do
-        ram
-        # run every quarter second
-        for run in {1..4}
+        network
+        # run every second
+        for run in {1..5}
         do
+        	ram
             datetime 
             volume
             battery
-            xsetroot -name " $WEATHER   $RAM  $BATTERY_ICON $BATTERY  $VOLUME_ICON $VOLUME   $DATETIME "
-            sleep 0.25
+			str="[ $NETWORK ] [ $VOLUME ] [ $RAM ] [ $BATTERY ] [ $WEATHER ] [ $DATETIME ]"
+            #xsetroot -name "$str"
+			echo "$str"
+			sleep 1 
         done
         # break on blank weather
         [ -z "$WEATHER" ] && break

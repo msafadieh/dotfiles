@@ -1,0 +1,47 @@
+{
+    "layer": "top",
+    "modules-left": ["sway/workspaces"],
+    "modules-center": [],
+    "modules-right": ["custom/mullvad", "network", "pulseaudio", "cpu", "memory", "battery", "clock", "tray"],
+    "battery": {
+        "format": "{icon} {capacity}%",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "clock": {
+		"format": "  {:%a %d %B ☭ %H:%M}"
+    },
+	"memory": {
+		"format": "  {used:0.1f}G"
+	},
+	"cpu": {
+		"format": "  {}%",
+		"max-length": 10
+	},
+	"pulseaudio": {
+		"format": "{icon} {volume}%",
+		"format-bluetooth": "{icon} {volume}%",
+		"format-muted": " {volume}%",
+		"format-icons": {
+			"headphones": " ",
+			"default": [" ", " "]
+		}
+	},
+	"network": {
+	    "interface": "wlp1s0",
+	    "format": "{ifname}",
+	    "format-wifi": "直  {essid}",
+	    "format-ethernet": "  {ifname}",
+	    "format-disconnected": "睊  disconnected", //An empty format will hide the module.
+	    "tooltip-format": "{ifname}",
+	    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+	    "tooltip-format-ethernet": "{ifname} ",
+	    "tooltip-format-disconnected": "Disconnected",
+	    "max-length": 50
+	},
+	"custom/mullvad": {
+		"format": "廬  {}",
+		"exec": "mullvad status | grep -o 'Connect\\(ed\\|ing\\)\\|Disconnected\\|Blocked' | tr '[:upper:]' '[:lower:]'",
+		"interval": 5,
+		"on-click": "mullvad-vpn"
+	}
+}

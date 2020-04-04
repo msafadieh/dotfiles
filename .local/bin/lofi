@@ -4,15 +4,7 @@ if pidof mpv > /dev/null && [ -f "$PIDFILE" ];
 then
     xargs kill < $PIDFILE && rm $PIDFILE
 else
-    modes="chill\nstudy"
-    # shellcheck disable=SC2059
-    mode=$(printf "$modes" | dmenu)
-
-    if [ "$mode" = "chill" ]; then
-        url="https://www.youtube.com/watch?v=DWcJFNfaw9c"
-    elif [ "$mode" = "study" ]; then
-        url="https://www.youtube.com/watch?v=5qap5aO4i9A"
-    fi
+    url="https://www.youtube.com/watch?v=DWcJFNfaw9c"
     mpv --no-video "$url" &
     echo "$!" > $PIDFILE
 fi

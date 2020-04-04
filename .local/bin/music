@@ -2,4 +2,4 @@
 
 pidof mpd || mpd
 
-exec st -c st-center -e ncmpcpp
+exec alacritty --class "music" -e ncmpcpp

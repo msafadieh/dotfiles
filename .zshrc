@@ -6,6 +6,8 @@ export EDITOR='vim'
 export SYSTEMD_EDITOR=$EDITOR
 export WEECHAT_HOME=$HOME/.config/weechat
 export LC_ALL=en_US.UTF-8
+export MOZ_ENABLE_WAYLAND=1
+export XDG_CURRENT_DESKTOP=Unity
 
 # ALIASES
 alias vassar='ssh -p 443 msafadieh@mote.cs.vassar.edu'
@@ -33,8 +35,8 @@ gpg-connect-agent updatestartuptty /bye > /dev/null
 
 # start X
 if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-  mkdir -p ~/.cache/X11
-  exec startx >> ~/.cache/X11/stdout 2>> ~/.cache/X11/stderr
+  mkdir -p ~/.cache/sway
+  exec sway >> ~/.cache/sway/stdout 2>> ~/.cache/sway/stderr
 fi
 
 # autocompletion

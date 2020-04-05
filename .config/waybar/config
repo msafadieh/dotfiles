@@ -1,14 +1,14 @@
 {
     "layer": "top",
-    "modules-left": ["sway/workspaces"],
-    "modules-center": [],
-    "modules-right": ["custom/mullvad", "network", "pulseaudio", "cpu", "memory", "battery", "clock", "tray"],
+    "modules-left": ["sway/workspaces", "mpd"],
+    "modules-center": ["clock"],
+    "modules-right": ["custom/mullvad", "network", "pulseaudio", "cpu", "memory", "battery", "tray"],
     "battery": {
         "format": "{icon} {capacity}%",
         "format-icons": ["", "", "", "", ""]
     },
     "clock": {
-		"format": "  {:%a %d %B ☭ %H:%M}"
+		"format": "{:%a %d %B ☭ %H:%M}"
     },
 	"memory": {
 		"format": "  {used:0.1f}G"
@@ -28,7 +28,7 @@
 	},
 	"network": {
 	    "interface": "wlp1s0",
-	    "format": "{ifname}",
+	    "format": "睊  disconnected", //An empty format will hide the module.
 	    "format-wifi": "直  {essid}",
 	    "format-ethernet": "  {ifname}",
 	    "format-disconnected": "睊  disconnected", //An empty format will hide the module.
@@ -40,8 +40,19 @@
 	},
 	"custom/mullvad": {
 		"format": "廬  {}",
-		"exec": "mullvad status | grep -o 'Connect\\(ed\\|ing\\)\\|Disconnected\\|Blocked' | tr '[:upper:]' '[:lower:]'",
+		"exec": "mullvad status | grep Connected > /dev/null && echo on || echo off",
 		"interval": 5,
 		"on-click": "mullvad-vpn"
+	},
+	"mpd": {
+		"format": "{stateIcon}  {albumArtist} - {title}",
+		"format-stopped": "",
+		"format-disconnected": "",
+		"interval": 2,
+		"state-icons": {
+			"paused": "",
+			"playing": ""
+		},
+		"max-length": 100
 	}
 }

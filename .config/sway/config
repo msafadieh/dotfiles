@@ -23,7 +23,7 @@ seat seat0 xcursor_theme "capitaine-cursors" 24
 exec_always gsettings set org.gnome.desktop.interface cursor-theme "capitaine-cursors"
 exec_always gsettings set org.gnome.desktop.interface gtk-theme "Ant-Dracula"
 exec_always gsettings set org.gnome.desktop.interface icon-theme "Tela-dark"
-exec_always gsettings set org.gnome.desktop.interface font-name "Anonymous Pro 12"
+exec_always gsettings set org.gnome.desktop.interface font-name "Anonymous Pro Bold 12"
 
 # Look
 gaps inner 5
@@ -40,6 +40,7 @@ for_window [app_id="scratchpad"] floating enable, sticky enable, move scratchpad
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg /home/mhmd/.wallpapers/5.jpg fill
 
+output eDP-1 resolution 1920x1080 position 0,0
 output HDMI-A-1 resolution 1920x1080 position 1920,0
 
 ### Idle configuration
@@ -182,6 +183,8 @@ mode "resize" {
 }
 bindsym $mod+q mode "resize"
 
-exec_always "killall waybar; waybar"
+bar {
+	swaybar_command waybar
+}
 
 include /etc/sway/config.d/*

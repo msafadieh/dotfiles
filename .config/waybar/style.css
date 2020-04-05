@@ -8,7 +8,7 @@
 }
 
 window#waybar {
-    border-bottom: 3px solid #427b58;;
+	border-bottom: 3px solid #323232;
     background-color: #323232;
     color: #d5c4a1;
     transition-property: background-color;
@@ -39,6 +39,7 @@ window#waybar.chromium {
 
 #workspaces button.focused {
     background-color: #427b58;
+    border-bottom: 3px solid #d5c4a1;
 }
 
 #workspaces button.urgent {
@@ -61,15 +62,30 @@ window#waybar.chromium {
 #custom-mullvad,
 #custom-weather,
 #mode,
-#idle_inhibitor,
-#mpd {
+#idle_inhibitor {
 	padding: 5px 8px;
-    margin: 0 2px;
-	border-bottom: 3px solid transparent;
+    margin: 0 5px;
     color: #d5c4a1;
+    border-bottom: 3px solid #427b58;
+}
+
+#clock {
+	background-color: #427b58;
+    border-bottom: 3px solid #d5c4a1;
 }
 
 #tray {
-	margin-right: 8px;
-	border-bottom: 3px solid transparent;
+	padding: 5px 8px;
+    border-bottom: 3px solid #427b58;
+}
+
+#mpd {
+	margin: 0;
+	padding: 5px 8px;
+	color: #d79921;
+	border-bottom: 3px solid #d79921;
+}
+
+#mpd.stopped, #mpd.disconnected {
+	border-bottom: inherit;
 }

@@ -1,15 +1,18 @@
 {
-    "layer": "top",
-    "modules-left": ["sway/workspaces"],
-    "modules-center": ["clock"],
-    "modules-right": ["custom/mullvad", "network", "pulseaudio", "cpu", "memory", "battery", "tray"],
-    "battery": {
-        "format": "{icon} {capacity}%",
-        "format-icons": ["", "", "", "", ""]
-    },
-    "clock": {
-		"format": "{:%a %d %B ☭ %H:%M}"
-    },
+	"layer": "top",
+	"modules-left": ["sway/workspaces"],
+	"modules-center": ["clock"],
+	"modules-right": ["custom/mullvad", "network", "pulseaudio", "cpu", "memory", "battery", "tray"],
+	"sway/workspaces": {
+		"format": "<big>{}</big>"
+	},
+	"battery": {
+		"format": "{icon} {capacity}%",
+		"format-icons": ["", "", "", "", ""]
+	},
+	"clock": {
+		"format": "{:%a %d %B <big>☭</big> %H:%M}"
+	},
 	"memory": {
 		"format": "  {used:0.1f}G"
 	},
@@ -27,16 +30,16 @@
 		}
 	},
 	"network": {
-	    "interface": "wlp1s0",
-	    "format": "睊  disconnected", //An empty format will hide the module.
-	    "format-wifi": "直  {essid}",
-	    "format-ethernet": "  {ifname}",
-	    "format-disconnected": "睊  disconnected", //An empty format will hide the module.
-	    "tooltip-format": "{ifname}",
-	    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
-	    "tooltip-format-ethernet": "{ifname} ",
-	    "tooltip-format-disconnected": "Disconnected",
-	    "max-length": 50
+		"interface": "wlp1s0",
+		"format": "睊  disconnected", //An empty format will hide the module.
+		"format-wifi": "直  {essid}",
+		"format-ethernet": "  {ifname}",
+		"format-disconnected": "睊  disconnected", //An empty format will hide the module.
+		"tooltip-format": "{ifname}",
+		"tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+		"tooltip-format-ethernet": "{ifname} ",
+		"tooltip-format-disconnected": "Disconnected",
+		"max-length": 50
 	},
 	"custom/mullvad": {
 		"format": "廬  {}",

@@ -1,54 +1,54 @@
 * {
-    border: none;
-    border-radius: 0;
-    font-family: Anonymice Nerd Font, monospace;
+	border: none;
+	border-radius: 0;
+	font-family: Anonymice Nerd Font, monospace;
 	font-weight: 700;
 	font-size: 14px;
-    min-height: 0;
+	min-height: 0;
 }
 
 window#waybar {
 	border-bottom: 3px solid #323232;
-    background-color: #323232;
-    color: #d5c4a1;
-    transition-property: background-color;
-    transition-duration: .5s;
+	background-color: #323232;
+	color: #d5c4a1;
+	transition-property: background-color;
+	transition-duration: .5s;
 }
 
 window#waybar.hidden {
-    opacity: 0.2;
+	opacity: 0.2;
 }
 
 window#waybar.termite {
-    background-color: #3F3F3F;
+	background-color: #3F3F3F;
 }
 
 window#waybar.chromium {
-    background-color: #000000;
-    border: none;
+	background-color: #000000;
+	border: none;
 }
 
 #workspaces button, #workspaces button.hover {
-    box-shadow: inherit;
+	box-shadow: inherit;
 	text-shadow: inherit;
 	background-color: #323232;
-    color: #d5c4a1;
+	color: #d5c4a1;
 	padding: 0 5px;
-    border-bottom: 3px solid #427b58;
+	border-bottom: 3px solid #427b58;
 }
 
 #workspaces button.focused {
-    background-color: #427b58;
-    border-bottom: 3px solid #d5c4a1;
+	background-color: #427b58;
+	border-bottom: 3px solid #d5c4a1;
 }
 
 #workspaces button.urgent {
-    border-bottom: #eb4d4b;
+	border-bottom: #eb4d4b;
 }
 
 #mode {
-    background-color: #64727D;
-    border-bottom: 3px solid #ffffff;
+	background-color: #64727D;
+	border-bottom: 3px solid #ffffff;
 }
 
 #clock,
@@ -64,19 +64,19 @@ window#waybar.chromium {
 #mode,
 #idle_inhibitor {
 	padding: 5px 8px;
-    margin: 0 5px;
-    color: #d5c4a1;
-    border-bottom: 3px solid #427b58;
+	margin: 0 5px;
+	color: #d5c4a1;
+	border-bottom: 3px solid #427b58;
 }
 
 #clock {
 	background-color: #427b58;
-    border-bottom: 3px solid #d5c4a1;
+	border-bottom: 3px solid #d5c4a1;
 }
 
 #tray {
 	padding: 5px 8px;
-    border-bottom: 3px solid #427b58;
+	border-bottom: 3px solid #427b58;
 }
 
 #mpd {

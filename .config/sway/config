@@ -9,11 +9,10 @@ set $right l
 set $term alacritty
 set $scratchpad $term --class "scratchpad"
 set $browser firefox
-set $location 04038
 
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu bemenu-run -ip "" | xargs swaymsg exec --
+set $menu bemenu-run -ip ""
 
 # Startup script
 exec nextcloud
@@ -50,145 +49,144 @@ input type:keyboard {
 
 ### Idle configuration
 exec swayidle -w \
-         timeout 600 'swaylock' \
-         timeout 600 'swaymsg "output * dpms off"' \
-         resume 'swaymsg "output * dpms on"' \
-         before-sleep 'swaylock'
+		 timeout 600 'swaylock' \
+		 timeout 600 'swaymsg "output * dpms off"' \
+		 resume 'swaymsg "output * dpms on"' \
+		 before-sleep 'swaylock'
 
 ### Key bindings
 #
 # Basics:
 #
-    # Start a terminal
-    bindsym $mod+Return exec $term
-    bindsym $mod+Shift+Return exec music
+	# Start a terminal
+	bindsym $mod+Return exec $term
+	bindsym $mod+Shift+Return exec music
 
-    # Start browser
-    bindsym $mod+w exec $browser    
-    bindsym $mod+Shift+p exec $browser --private-window
-    bindsym $mod+p exec screenshot    
-    bindsym Mod1+l exec lofi
+	# Start browser
+	bindsym $mod+w exec $browser	
+	bindsym $mod+Shift+p exec $browser --private-window
+	bindsym $mod+p exec screenshot	
+	bindsym Mod1+l exec lofi
 
-    # Kill focused window
-    bindsym $mod+Shift+c kill
+	# Kill focused window
+	bindsym $mod+Shift+c kill
 
-    # Start your launcher
-    bindsym $mod+r exec $menu
+	# Start your launcher
+	bindsym $mod+r exec $menu
 
-    floating_modifier $mod normal
+	floating_modifier $mod normal
 
-    # Reload the configuration file
+	# Reload the configuration file
 	bindsym $mod+Shift+r exec '[ $(printf "yes\nno\n" | bemenu -p "Reload?")  = "yes" ] && swaymsg reload'
 
-    # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+q exit 
+	# Exit sway (logs you out of your Wayland session)
+	bindsym $mod+Shift+q exit 
 #
 # Moving around:
 #
-    # Move your focus around
-    bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
-    bindsym $mod+$right focus right
-    
-    # Move the focused window with the same, but add Shift
-    bindsym $mod+Shift+$left move left
-    bindsym $mod+Shift+$down move down
-    bindsym $mod+Shift+$up move up
-    bindsym $mod+Shift+$right move right
+	# Move your focus around
+	bindsym $mod+$left focus left
+	bindsym $mod+$down focus down
+	bindsym $mod+$up focus up
+	bindsym $mod+$right focus right
+	
+	# Move the focused window with the same, but add Shift
+	bindsym $mod+Shift+$left move left
+	bindsym $mod+Shift+$down move down
+	bindsym $mod+Shift+$up move up
+	bindsym $mod+Shift+$right move right
 
-#    
+#	
 # Volume
 #   
-    bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle    
-    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%    
-    bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+	bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle	
+	bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%	
+	bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 
-    # Brightness
-    bindsym XF86MonBrightnessUp exec light -A 10
-    bindsym XF86MonBrightnessDown exec light -U 10
+	# Brightness
+	bindsym XF86MonBrightnessUp exec light -A 10
+	bindsym XF86MonBrightnessDown exec light -U 10
 
 #
 # Workspaces:
 #
-    # Cycle between workspaces
-    bindsym $mod+Right workspace next   
-    bindsym $mod+Left workspace prev    
-    # Switch to workspace
-    bindsym $mod+1 workspace 1
-    bindsym $mod+2 workspace 2
-    bindsym $mod+3 workspace 3
-    bindsym $mod+4 workspace 4
-    bindsym $mod+5 workspace 5
-    bindsym $mod+6 workspace 6
-    bindsym $mod+7 workspace 7
-    bindsym $mod+8 workspace 8
-    bindsym $mod+9 workspace 9
-    bindsym $mod+0 workspace 10
-    # Move focused container to workspace
-    bindsym $mod+Shift+1 move container to workspace 1
-    bindsym $mod+Shift+2 move container to workspace 2
-    bindsym $mod+Shift+3 move container to workspace 3
-    bindsym $mod+Shift+4 move container to workspace 4
-    bindsym $mod+Shift+5 move container to workspace 5
-    bindsym $mod+Shift+6 move container to workspace 6
-    bindsym $mod+Shift+7 move container to workspace 7
-    bindsym $mod+Shift+8 move container to workspace 8
-    bindsym $mod+Shift+9 move container to workspace 9
-    bindsym $mod+Shift+0 move container to workspace 10
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
+	# Cycle between workspaces
+	bindsym $mod+Right workspace next   
+	bindsym $mod+Left workspace prev	
+	# Switch to workspace
+	bindsym $mod+1 workspace ١
+	bindsym $mod+2 workspace ٢
+	bindsym $mod+3 workspace ٣
+	bindsym $mod+4 workspace ٤
+	bindsym $mod+5 workspace ٥ 
+	bindsym $mod+6 workspace ٦
+	bindsym $mod+7 workspace ٧
+	bindsym $mod+8 workspace ٨
+	bindsym $mod+9 workspace ٩ 
+	bindsym $mod+0 workspace ١٠
+	# Move focused container to workspace
+	bindsym $mod+Shift+1 move container to workspace 1
+	bindsym $mod+Shift+2 move container to workspace 2
+	bindsym $mod+Shift+3 move container to workspace 3
+	bindsym $mod+Shift+4 move container to workspace 4
+	bindsym $mod+Shift+5 move container to workspace 5
+	bindsym $mod+Shift+6 move container to workspace 6
+	bindsym $mod+Shift+7 move container to workspace 7
+	bindsym $mod+Shift+8 move container to workspace 8
+	bindsym $mod+Shift+9 move container to workspace 9
+	bindsym $mod+Shift+0 move container to workspace 10
+	# Note: workspaces can have any name you want, not just numbers.
+	# We just use 1-10 as the default.
 
-#    
+#	
 # Outputs:
 #
-    bindsym $mod+Shift+Right move container to output right
-    bindsym $mod+Shift+Left move container to output left
+	bindsym $mod+Shift+Right move container to output right
+	bindsym $mod+Shift+Left move container to output left
 
 # Layout stuff:
 #
-    # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+	# You can "split" the current object of your focus with
+	# $mod+b or $mod+v, for horizontal and vertical splits
+	# respectively.
+	bindsym $mod+b splith
+	bindsym $mod+v splitv
 
-    # Switch the current container between different layout styles
-    bindsym $mod+t layout tabbed
-    bindsym $mod+s layout toggle split
+	# Switch the current container between different layout styles
+	bindsym $mod+t layout tabbed
+	bindsym $mod+s layout toggle split
 
-    # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+	# Make the current focus fullscreen
+	bindsym $mod+f fullscreen
 
-    # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
+	# Toggle the current focus between tiling and floating mode
+	bindsym $mod+Shift+space floating toggle
 
-    # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+	# Swap focus between the tiling area and the floating area
+	bindsym $mod+space focus mode_toggle
 
-    # Move focus to the parent container
-    bindsym $mod+a focus parent
+	# Move focus to the parent container
+	bindsym $mod+a focus parent
 #
 # Scratchpad:
 #
-    bindsym $mod+Shift+grave exec $scratchpad 
+	bindsym $mod+Shift+grave exec $scratchpad 
 	bindsym $mod+grave scratchpad show
 #
 # Resizing containers:
 #
 mode "resize" {
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+	bindsym Left resize shrink width 10px
+	bindsym Down resize grow height 10px
+	bindsym Up resize shrink height 10px
+	bindsym Right resize grow width 10px
 
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
 }
 bindsym $mod+q mode "resize"
 
-exec_always "killall waybar; export XDG_CURRENT_DESKTOP=Unity; waybar"
-
-exec "swaymsg 'workspace 2; workspace temp; workspace 1; workspace 2; workspace temp; workspace 1'"
+exec_always "killall waybar; XDG_CURRENT_DESKTOP=Unity waybar"
+exec "swaymsg move workspace to output right"
 
 include /etc/sway/config.d/*

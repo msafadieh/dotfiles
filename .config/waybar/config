@@ -1,6 +1,6 @@
 {
     "layer": "top",
-    "modules-left": ["sway/workspaces", "mpd"],
+    "modules-left": ["sway/workspaces"],
     "modules-center": ["clock"],
     "modules-right": ["custom/mullvad", "network", "pulseaudio", "cpu", "memory", "battery", "tray"],
     "battery": {
@@ -43,16 +43,16 @@
 		"exec": "mullvad status | grep Connected > /dev/null && echo on || echo off",
 		"interval": 5,
 		"on-click": "mullvad-vpn"
-	},
-	"mpd": {
-		"format": "{stateIcon}  {albumArtist} - {title}",
-		"format-stopped": "",
-		"format-disconnected": "",
-		"interval": 2,
-		"state-icons": {
-			"paused": "",
-			"playing": ""
-		},
-		"max-length": 100
+	//},
+	//"mpd": {
+	//	"format": "{stateIcon}  {albumArtist} - {title}",
+	//	"format-stopped": "",
+	//	"format-disconnected": "",
+	//	"interval": 2,
+	//	"state-icons": {
+	//		"paused": "",
+	//		"playing": ""
+	//	},
+	//	"max-length": 100
 	}
 }

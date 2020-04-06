@@ -7,7 +7,6 @@ export SYSTEMD_EDITOR=$EDITOR
 export WEECHAT_HOME=$HOME/.config/weechat
 export LC_ALL=en_US.UTF-8
 export MOZ_ENABLE_WAYLAND=1
-export XDG_CURRENT_DESKTOP=Unity
 
 # ALIASES
 alias vassar='ssh -p 443 msafadieh@mote.cs.vassar.edu'

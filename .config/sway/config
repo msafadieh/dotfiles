@@ -21,14 +21,15 @@ exec $scratchpad
 # Theming
 seat seat0 xcursor_theme "capitaine-cursors" 24
 exec_always gsettings set org.gnome.desktop.interface cursor-theme "capitaine-cursors"
-exec_always gsettings set org.gnome.desktop.interface gtk-theme "Ant-Dracula"
+exec_always gsettings set org.gnome.desktop.interface gtk-theme "Arc-Gruvbox"
 exec_always gsettings set org.gnome.desktop.interface icon-theme "Tela-dark"
 exec_always gsettings set org.gnome.desktop.interface font-name "Anonymous Pro Bold 12"
 
 # Look
 gaps inner 5
 gaps outer 5
-client.focused #d79921 #d79921 #ffffff #b57614 
+client.focused #d79921 #b57614 #fbf1c7 #b57614
+client.unfocused #282828 #282828 #a89984 #3c3836
 default_border pixel 3
 
 # Rules 
@@ -36,12 +37,16 @@ for_window [app_id="music"] floating enable, border pixel 6, sticky enable
 for_window [app_id="scratchpad"] floating enable, sticky enable, move scratchpad
 
 ### Output configuration
+output eDP-1 position 0,0 bg /home/mhmd/.wallpapers/5.jpg fill
+output HDMI-A-1 position 1920,0 bg /home/mhmd/.wallpapers/2.jpg fill
 
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/mhmd/.wallpapers/5.jpg fill
-
-output eDP-1 resolution 1920x1080 position 0,0
-output HDMI-A-1 resolution 1920x1080 position 1920,0
+### Input configuration
+input type:keyboard {
+	xkb_layout "us,ara",
+	xkb_model "pc105",
+	xkb_variant ",qwerty",
+	xkb_options "grp:alt_space_toggle"
+}
 
 ### Idle configuration
 exec swayidle -w \
@@ -140,7 +145,6 @@ exec swayidle -w \
     bindsym $mod+Shift+Right move container to output right
     bindsym $mod+Shift+Left move container to output left
 
-#
 # Layout stuff:
 #
     # You can "split" the current object of your focus with
@@ -183,8 +187,8 @@ mode "resize" {
 }
 bindsym $mod+q mode "resize"
 
-bar {
-	swaybar_command waybar
-}
+exec_always "killall waybar; export XDG_CURRENT_DESKTOP=Unity; waybar"
+
+exec "swaymsg 'workspace 2; workspace temp; workspace 1; workspace 2; workspace temp; workspace 1'"
 
 include /etc/sway/config.d/*

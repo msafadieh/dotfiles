@@ -64,7 +64,9 @@ window#waybar.chromium {
 #mode,
 #idle_inhibitor {
 	padding: 5px 8px;
-	margin: 0 5px;
+	padding-right: 11px;
+	margin: 0;
+	margin-left: 10px;
 	color: #d5c4a1;
 	border-bottom: 3px solid #427b58;
 }
@@ -75,7 +77,11 @@ window#waybar.chromium {
 }
 
 #tray {
-	padding: 5px 8px;
+	margin: 0;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 0;
+	padding-right: 8px;
 	border-bottom: 3px solid #427b58;
 }
 

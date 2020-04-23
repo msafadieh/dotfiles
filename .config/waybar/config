@@ -1,24 +1,27 @@
 {
 	"layer": "top",
-	"modules-left": ["sway/workspaces"],
+	"modules-left": ["sway/workspaces", "mpd"],
 	"modules-center": ["clock"],
-	"modules-right": ["custom/mullvad", "network", "pulseaudio", "cpu", "memory", "battery", "tray"],
+	"modules-right": ["custom/mullvad", "network", "pulseaudio", "cpu", "memory", "battery", "idle_inhibitor", "tray"],
 	"sway/workspaces": {
 		"format": "<big>{}</big>"
 	},
 	"battery": {
-		"format": "{icon} {capacity}%",
+		"format": " {capacity}%",
+		"format-discharging": "{icon} {capacity}%",
 		"format-icons": ["", "", "", "", ""]
 	},
 	"clock": {
 		"format": "{:%a %d %B <big>☭</big> %H:%M}"
 	},
 	"memory": {
-		"format": "  {used:0.1f}G"
+		"format": "  {used:0.1f}G",
+		"interval": 5
 	},
 	"cpu": {
 		"format": "  {}%",
-		"max-length": 10
+		"max-length": 10,
+		"interval": 5
 	},
 	"pulseaudio": {
 		"format": "{icon} {volume}%",
@@ -31,10 +34,10 @@
 	},
 	"network": {
 		"interface": "wlp1s0",
-		"format": "睊  disconnected", //An empty format will hide the module.
+		"format": "睊  disconnected",
 		"format-wifi": "直  {essid}",
 		"format-ethernet": "  {ifname}",
-		"format-disconnected": "睊  disconnected", //An empty format will hide the module.
+		"format-disconnected": "睊  disconnected",
 		"tooltip-format": "{ifname}",
 		"tooltip-format-wifi": "{essid} ({signalStrength}%) ",
 		"tooltip-format-ethernet": "{ifname} ",
@@ -43,19 +46,30 @@
 	},
 	"custom/mullvad": {
 		"format": "廬  {}",
-		"exec": "mullvad status | grep Connected > /dev/null && echo on || echo off",
-		"interval": 5,
-		"on-click": "mullvad-vpn"
-	//},
-	//"mpd": {
-	//	"format": "{stateIcon}  {albumArtist} - {title}",
-	//	"format-stopped": "",
-	//	"format-disconnected": "",
-	//	"interval": 2,
-	//	"state-icons": {
-	//		"paused": "",
-	//		"playing": ""
-	//	},
-	//	"max-length": 100
+		"exec": "mullvad status listen | awk '{print tolower($3); system(\"\")}'",
+		"on-click": "mullvad connect",
+		"on-click-right": "mullvad disconnect",
+		"on-click-middle": "mullvad reconnect"
+	},
+	"mpd": {
+		"format": "{stateIcon}  {albumArtist} - {title}",
+		"format-stopped": "",
+		"format-disconnected": "",
+		"interval": 2,
+		"state-icons": {
+			"paused": "",
+			"playing": ""
+		},
+		"max-length": 100
+	},
+	"tray": {
+		"spacing": 5
+	},
+	"idle_inhibitor": {
+		"format": "{icon}",
+		"format-icons": {
+			"activated": "零",
+			"deactivated": "鈴"
+		}
 	}
 }

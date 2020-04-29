@@ -1,6 +1,6 @@
 {
 	"layer": "top",
-	"modules-left": ["sway/workspaces", "mpd"],
+	"modules-left": ["sway/workspaces"],
 	"modules-center": ["clock"],
 	"modules-right": ["custom/mullvad", "network", "pulseaudio", "cpu", "memory", "battery", "idle_inhibitor", "tray"],
 	"sway/workspaces": {

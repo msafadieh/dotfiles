@@ -9,6 +9,7 @@ export LC_ALL=en_US.UTF-8
 export MOZ_ENABLE_WAYLAND=1
 
 # ALIASES
+alias amend='git commit --amend --no-edit'
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias x='aunpack'

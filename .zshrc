@@ -10,7 +10,7 @@ export MOZ_ENABLE_WAYLAND=1
 
 # ALIASES
 alias amend='git commit --amend --no-edit'
-alias ls='ls --color=auto'
+alias ls="lsd"
 alias grep='grep --color=auto'
 alias x='aunpack'
 
@@ -32,7 +32,7 @@ export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
 gpg-connect-agent updatestartuptty /bye > /dev/null
 
-# start X
+# start sway 
 if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
   mkdir -p ~/.cache/sway
   exec sway >> ~/.cache/sway/stdout 2>> ~/.cache/sway/stderr

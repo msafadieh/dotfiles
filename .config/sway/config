@@ -21,7 +21,7 @@ seat seat0 xcursor_theme "capitaine-cursors" 24
 exec_always gsettings set org.gnome.desktop.interface cursor-theme "capitaine-cursors"
 exec_always gsettings set org.gnome.desktop.interface gtk-theme "Arc-Gruvbox"
 exec_always gsettings set org.gnome.desktop.interface icon-theme "Tela-dark"
-exec_always gsettings set org.gnome.desktop.interface font-name "Anonymous Pro Bold 12"
+exec_always gsettings set org.gnome.desktop.interface font-name "Noto Sans 11.5"
 
 gaps inner 5
 gaps outer 5
@@ -33,7 +33,7 @@ default_border pixel 3
 for_window [app_id="music"] floating enable, border pixel 6, sticky enable
 
 ### Output configuration
-output eDP-1 position 0,0 bg /home/mhmd/.wallpapers/5.jpg fill
+output eDP-1 position 0,0 bg /home/mhmd/.wallpapers/7.jpg fill
 output HDMI-A-1 position 1920,0 bg /home/mhmd/.wallpapers/2.jpg fill
 
 ### Input configuration

@@ -2,7 +2,7 @@
 # screenshot script
 
 directory="$HOME/scrns"
-filename="$directory/$(date +%Y%m%d%H%M%S).png"
+filename="$directory/$(date +%Y-%m-%dT%H%M%S).png"
 
 mkdir -p "$directory"
 grim -g "$(slurp)" "$filename"

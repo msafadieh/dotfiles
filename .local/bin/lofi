@@ -2,9 +2,9 @@
 PIDFILE="$HOME/.cache/lofi"
 if pidof mpv > /dev/null && [ -f "$PIDFILE" ];
 then
-    xargs kill < $PIDFILE && rm $PIDFILE
+    xargs kill < "$PIDFILE" && rm "$PIDFILE"
 else
     url="https://www.youtube.com/watch?v=DWcJFNfaw9c"
     mpv --no-video "$url" &
-    echo "$!" > $PIDFILE
+    echo "$!" > "$PIDFILE"
 fi

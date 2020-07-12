@@ -1,7 +1,7 @@
 # ENV VARIABLES
 export PATH=$HOME/.local/bin:$PATH
 export HISTFILE=$HOME/.cache/zsh_history
-export ZSH=$HOME/.oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
 export EDITOR='vim'
 export SYSTEMD_EDITOR=$EDITOR
 export WEECHAT_HOME=$HOME/.config/weechat
@@ -34,41 +34,29 @@ gpg-connect-agent updatestartuptty /bye > /dev/null
 
 # start sway 
 if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-  mkdir -p ~/.cache/sway
-  exec sway >> ~/.cache/sway/stdout 2>> ~/.cache/sway/stderr
+	exec sway
 fi
 
-# autocompletion
-autoload -U compaudit compinit
-ZSH_COMPDUMP="${ZDOTDIR:-${HOME}}/.zcompdump-${ZSH_VERSION}"
-compinit -u -C -d "${ZSH_COMPDUMP}"
-zstyle ':completion:*' menu select
-setopt COMPLETE_ALIASES
-zstyle ':completion::complete:*' gain-privileges 1
+ZSH_THEME="robbyrussell"
+plugins=(fast-syntax-highlighting git)
 
 # vi key bindings
-bindkey -v
-export KEYTIMEOUT=1
+bindkey -v 
 
-# enable line search on arrow up/down
-autoload up-line-or-beginning-search
-autoload down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-bindkey "^[[A" up-line-or-beginning-search
-bindkey "^[[B" down-line-or-beginning-search
+autoload -Uz history-search-end
 
-# spaceship prompt
-autoload -U promptinit
-promptinit
-export SPACESHIP_ROOT=/usr/lib/spaceship-prompt/
-prompt spaceship
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
 
-PLUGINS=( $HOME/.local/lib/history.zsh
-	  /usr/share/LS_COLORS/dircolors.sh
-	  /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-	  /usr/share/z/z.sh )
+bindkey -M vicmd '^[[A' history-beginning-search-backward-end \
+                 '^[OA' history-beginning-search-backward-end \
+                 '^[[B' history-beginning-search-forward-end \
+                 '^[OB' history-beginning-search-forward-end \
+				 v edit-command-line
 
-for plugin in $PLUGINS; do
-	[[ -r "$plugin" ]] && . "$plugin"
-done
+bindkey -M viins '^[[A' history-beginning-search-backward-end \
+                 '^[OA' history-beginning-search-backward-end \
+                 '^[[B' history-beginning-search-forward-end \
+                 '^[OB' history-beginning-search-forward-end
+
+source $ZSH/oh-my-zsh.sh

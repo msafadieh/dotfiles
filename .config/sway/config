@@ -33,8 +33,9 @@ default_border pixel 3
 for_window [app_id="music"] floating enable, border pixel 6, sticky enable
 
 ### Output configuration
-output eDP-1 position 0,0 bg /home/mhmd/.wallpapers/7.jpg fill
-output HDMI-A-1 position 1920,0 bg /home/mhmd/.wallpapers/2.jpg fill
+#output eDP-1 disable 
+output HDMI-A-1 position 0,0 bg /home/mhmd/.wallpapers/2.jpg fill
+output eDP-1 position 1920,0 bg /home/mhmd/.wallpapers/7.jpg fill
 
 ### Input configuration
 input type:keyboard {
@@ -47,8 +48,8 @@ input type:keyboard {
 ### Idle configuration
 exec swayidle -w \
 	timeout 600 'swaylock' \
-	timeout 600 'swaymsg "output * dpms off"' \
-	resume 'swaymsg "output * dpms on"' \
+	#timeout 600 'swaymsg "output * dpms off"' \
+	#resume 'swaymsg "output * dpms on"' \
 	before-sleep 'swaylock'
 
 ### Key bindings

@@ -28,5 +28,6 @@
     "terminal.integrated.rendererType": "dom",
     "editor.quickSuggestions": {
         "strings": true
-    }
+    },
+    "diffEditor.ignoreTrimWhitespace": false
 }

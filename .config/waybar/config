@@ -46,10 +46,8 @@
 	},
 	"custom/mullvad": {
 		"format": "廬  {}",
-		"exec": "mullvad status listen | awk '{print tolower($3); system(\"\")}'",
-		"on-click": "mullvad connect",
-		"on-click-right": "mullvad disconnect",
-		"on-click-middle": "mullvad reconnect"
+		"exec": "sudo wg | awk 'NR==1{s=$2}END{if(s){print s}else{print \"off\"}}'",
+		"interval": 5
 	},
 	"mpd": {
 		"format": "{stateIcon}  {albumArtist} - {title}",

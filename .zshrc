@@ -4,14 +4,11 @@ export HISTFILE=$HOME/.cache/zsh_history
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR='vim'
 export SYSTEMD_EDITOR=$EDITOR
-export WEECHAT_HOME=$HOME/.config/weechat
 export LC_ALL=en_US.UTF-8
-export MOZ_ENABLE_WAYLAND=1
+export WEECHAT_HOME=$HOME/.config/weechat
 
 # ALIASES
 alias amend='git commit --amend --no-edit'
-alias ls="lsd"
-alias grep='grep --color=auto'
 alias x='aunpack'
 
 # colored man output
@@ -32,21 +29,20 @@ export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
 gpg-connect-agent updatestartuptty /bye > /dev/null
 
-# start sway 
+# start sway
 if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-	exec sway
+	exec startx
 fi
 
 ZSH_THEME="robbyrussell"
-plugins=(fast-syntax-highlighting git)
+plugins=(fast-syntax-highlighting z)
 
 # vi key bindings
-bindkey -v 
-
 autoload -Uz history-search-end
-
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
+source $ZSH/oh-my-zsh.sh
+bindkey -v
 
 bindkey -M vicmd '^[[A' history-beginning-search-backward-end \
                  '^[OA' history-beginning-search-backward-end \
@@ -59,4 +55,3 @@ bindkey -M viins '^[[A' history-beginning-search-backward-end \
                  '^[[B' history-beginning-search-forward-end \
                  '^[OB' history-beginning-search-forward-end
 
-source $ZSH/oh-my-zsh.sh

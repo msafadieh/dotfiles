@@ -1,5 +1,8 @@
 env:
-  TERM: xterm-256color 
+  TERM: xterm-256color
+
+  # fix scaling issue on laptop when using X11
+  WINIT_X11_SCALE_FACTOR: "1.0"
 
 window:
   padding:
@@ -7,16 +10,14 @@ window:
     y: 10
 
   # Spread additional padding evenly around the terminal content.
-  dynamic_padding: false 
-  decorations: none
+  dynamic_padding: false
 
 font:
   normal:
-    family: JetBrainsMono
-    style: Regular
-  size: 11.5
+    family: Jetbrains Mono
+  size: 12
 
-# Colors (Gruvbox dark)
+  # Colors (Gruvbox dark)
 colors:
   # Default colors
   primary:

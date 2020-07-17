@@ -5,6 +5,11 @@ directory="$HOME/scrns"
 filename="$directory/$(date +%Y-%m-%dT%H%M%S).png"
 
 mkdir -p "$directory"
-grim -g "$(slurp)" "$filename"
+if pidof Xorg; then
+	sleep 0.2; import "$filename"
+else
+	grim -g "$(slurp)" "$filename"
+fi
+
 [ -f "$filename" ] && ln -f "$filename" "$directory/latest.png"
 

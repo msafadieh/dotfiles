@@ -1,2 +1,0 @@
-#! /bin/sh
-/usr/bin/bemenu -n --fn "Anonymous Pro Bold 11" --fb "#323232" --ff "#d5c4a1" --nb "#323232" --nf "#d5c4a1" --hb "#427b58" --hf "#d5c4a1" --tb "#427b58" --tf "#d5c4a1" "$@" < /dev/stdin

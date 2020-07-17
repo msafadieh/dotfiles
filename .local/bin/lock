@@ -1,0 +1,19 @@
+#! /bin/sh
+
+if pidof i3lock; then
+	exit
+fi
+
+if ! pidof zoom; then
+	i3lock \
+		-c 282828 \
+		--insidecolor=3c3836ff \
+		--insidevercolor=8ec07c \
+		--ringvercolor=689d6aff \
+		--insidewrongcolor=fb4934ff \
+		--ringwrongcolor=cc241dff \
+		--ringcolor=b57614ff \
+		--keyhlcolor=d79921ff \
+		--veriftext="..." \
+		--indicator
+fi

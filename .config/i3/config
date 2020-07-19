@@ -10,7 +10,7 @@ set $right l
 
 # apps
 set $term alacritty
-set $scratchpad alacritty --class "scratchpad" 
+set $scratchpad "~/.local/bin/scratchpad"
 set $browser firefox
 set $screenshot screenshot
 set $menu rofi -show run
@@ -18,23 +18,25 @@ set $menu rofi -show run
 # Startup script
 exec --no-startup-id nextcloud
 exec --no-startup-id picom
+exec --no-startup-id redshift
 exec --no-startup-id xautolock -detectsleep -time 15 -locker '~/.local/bin/lock' &
 
 exec_always --no-startup-id feh --bg-scale ~/.wallpapers/current
 
 set $w1  "1:  "
 set $w2  "2:  "
-set $w3  "3:  "
-set $w4  " ﳽ :4"
+set $w3  "3:  "
+set $w4  "4:  "
 set $w5  "5:  "
 set $w6  6
 set $w7  7
 set $w8  8
-set $w9  "9:  "
+set $w9  9
 set $w10 10
 
-workspace $w9 output eDP 
 workspace $w1 output primary
+workspace $w2 output primary
+workspace $w3 output eDP
 exec --no-startup-id i3-msg workspace $w1
 
 assign [class="^firefox$"] $w1
@@ -44,10 +46,13 @@ assign [instance="^Alacritty$"] $w2
 for_window [class="^Alacritty$"] focus
 
 assign [class="^Slack$"] $w3
+assign [class="^Gajim$"] $w3
 
-assign [class="^Gajim$"] $w4
-# Rules 
-for_window [instance="music|scratchpad"] floating enable, border pixel 6, sticky enable
+assign [class="^mpv$"] $w4
+for_window [class="^mpv$"] focus
+# Rules
+for_window [class="^Alacritty$" instance="^(music|scrtchpad)$"] \
+	floating enable, border pixel 6, sticky enable
 
 ### Key bindings
 #
@@ -76,7 +81,7 @@ for_window [instance="music|scratchpad"] floating enable, border pixel 6, sticky
 	bindsym $mod+Shift+r reload
 
 	# Exit sway (logs you out of your Wayland session)
-	bindsym $mod+Shift+q exit 
+	bindsym $mod+Shift+q exit
 #
 # Moving around:
 #
@@ -94,7 +99,7 @@ for_window [instance="music|scratchpad"] floating enable, border pixel 6, sticky
 
 #	
 # Volume
-#   
+#
 	bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle	
 	bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%	
 	bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
@@ -107,7 +112,7 @@ for_window [instance="music|scratchpad"] floating enable, border pixel 6, sticky
 # Workspaces:
 #
 	# Cycle between workspaces
-	bindsym $mod+Right workspace next   
+	bindsym $mod+Right workspace next
 	bindsym $mod+Left workspace prev	
 ##### Switch to workspace
 	bindsym $mod+1 workspace $w1
@@ -180,7 +185,9 @@ bar {
 
 	position top
 	separator_symbol " < "
-	tray_output primary 
+	tray_output primary
+	tray_padding 6
+	height 30
 
 	colors {
 		background $bg

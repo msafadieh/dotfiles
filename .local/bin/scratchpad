@@ -1,0 +1,15 @@
+#! /bin/sh
+
+tree="$(i3-msg -t get_tree)"
+instance=scrtchpad
+exec_command="alacritty --class '$instance'"
+
+if echo "$tree" | grep "\"$instance\""; then
+	if echo "$tree" | jq '.nodes[0]' | grep "\"$instance\""; then
+		i3-msg "scratchpad show"
+	else
+		i3-msg "[instance=\"$instance\"] move scratchpad"
+	fi
+else
+	i3-msg "exec --no-startup-id \"$exec_command\""
+fi
